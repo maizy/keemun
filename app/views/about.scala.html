@@ -1,0 +1,12 @@
+@(version: String)(implicit l: Lang)
+
+@templates.main(nav = "about") {
+    <div>
+      <h1>@Messages("About")</h1>
+      <p class="lead">
+        hedGeHog v.@version<br/>
+        @Messages("Author"): Nikita Kovaliov, 2013<br/>
+        <a href="https://github.com/maizy/hedGeHog">https://github.com/maizy/hedGeHog</a>
+      </p>
+    </div>
+}

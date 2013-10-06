@@ -1,0 +1,25 @@
+@* TODO: use some helper for navigation *@
+@(nav: String = "search", scripts: Html = Html(""), styles: Html = Html(""))(content: Html)(implicit l: Lang)
+<!DOCTYPE html>
+<html lang="@l.language">
+  <head>
+    <title>hedGeHog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+
+    <link href="@routes.Assets.at("bootstrap/css/bootstrap.min.css")" rel="stylesheet" media="screen">
+    <link href="@routes.Assets.at("bootstrap/css/bootstrap-theme.min.css")" rel="stylesheet" media="screen">
+    <link href="@routes.Assets.at("stylesheets/main.css")" rel="stylesheet" media="screen">
+    @styles
+  </head>
+  <body>
+    <div class="container">
+      @parts.navbar(nav)
+      @content
+    </div>
+    <script src="@routes.Assets.at("javascripts/jquery.min.js")"></script>
+    <script src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")"></script>
+    @scripts
+  </body>
+</html>

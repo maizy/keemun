@@ -1,0 +1,10 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET     /                           controllers.Application.search
+GET     /about                      controllers.Application.about
+GET     /status                     controllers.Status.index
+
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /favicon.ico                controllers.Assets.at(path="/public", file="images/favicon.png")
