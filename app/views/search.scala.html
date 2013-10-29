@@ -1,10 +1,38 @@
 @()(implicit lang: Lang)
 
-@templates.main(nav = "search") {
-    <div>
-      <h1>Bla-bla</h1>
-      <p class="lead">
-        Bla-bla bla bla. Bla bla!
-      </p>
+@scripts = {
+    <script src="@routes.Assets.at("javascripts/utils.js")"></script>
+    <script src="@routes.Assets.at("javascripts/search-form.js")"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    $(function () {
+        new hedgehog.SearchForm(
+            $('.search_form_wrapper'),
+            window.location.href.indexOf('debug=true') != -1
+        );
+    });
+    // ]]>
+    </script>
+}
+
+@templates.main(scripts = scripts, nav = "search") {
+     <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 search_form_wrapper">
+            <form action="https://github.com/search" method="GET" class="search_form">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="text_search">@Messages("Code_search")</label>
+                        <input id="text_search" type="text" class="form-control input-lg" required>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-primary" disabled="disabled">@Messages("go_search_button")</button>
+                </fieldset>
+            </form>
+
+            <form action="https://github.com/search" method="GET" class="real_search_form" style="display: none;">
+                <input type="text" name="q" style="width: 800px;"/>
+                <input type="text" name="type" value="Code"/>
+                <input type="submit" />
+            </form>
+        </div>
     </div>
 }
