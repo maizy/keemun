@@ -1,6 +1,8 @@
-if (window.hedgehog == undefined) { window.hedgehog = {}; }
-if (window.hedgehog.SearchForm == undefined) {
+if (typeof window.hedgehog === 'undefined') { window.hedgehog = {}; }
+if (typeof window.hedgehog.SearchForm === 'undefined') {
 window.hedgehog.SearchForm = (function() {
+
+    'use strict';
 
     var s = function SearchForm($wrapper, debug) {
         this._debug = _.isUndefined(debug) ? false : !!debug;
@@ -8,12 +10,12 @@ window.hedgehog.SearchForm = (function() {
         this._reps = [];
         this._repsKey = undefined;
 
-        if ($wrapper.length == 0) {
-            hedgehog.utils.error('Search form wrapper not found')
+        if ($wrapper.length === 0) {
+            hedgehog.utils.error('Search form wrapper not found');
         } else {
-            $(_.bind(this.init, this));
+            $(this.init.bind(this));
         }
-    }
+    };
 
     s.prototype.getWrapper = function () {
         return this.$_wrapper;
@@ -45,18 +47,18 @@ window.hedgehog.SearchForm = (function() {
         this.getForm().find(':submit').prop('disabled', true);
         this._loadReps();
         this._bindForm();
-    }
+    };
 
     s.prototype._loadReps = function () {
         var self = this;
-        var r = hedgehog.routes.controllers.Repositories.list()
+        var r = hedgehog.routes.controllers.Repositories.list();
         $.ajax({
             url: r.url,
             method: r.method,
             success: function(data) {
                 var keys = [];
-                $.each(data['repositories'], function(_, rep) {
-                    keys.push(rep['full_name']);
+                $.each(data.repositories, function(_, rep) {
+                    keys.push(rep.full_name);
                 });
                 self.setReps(keys);
                 self.getForm().find(':submit').prop('disabled', false);

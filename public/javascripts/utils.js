@@ -1,6 +1,7 @@
-if (window.hedgehog == undefined) { window.hedgehog = {}; }
-if (window.hedgehog.utils == undefined) {
+if (typeof window.hedgehog === 'undefined') { window.hedgehog = {}; }
+if (typeof window.hedgehog.utils === 'undefined') {
 window.hedgehog.utils = (function() {
+    'use strict';
 
     var exp = {};
 
