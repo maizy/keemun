@@ -3,6 +3,7 @@
 .project/
 *.iml
 .scala_dependencies
+/${play.home}
 
 # Mac OS X junk
 .AppleDouble

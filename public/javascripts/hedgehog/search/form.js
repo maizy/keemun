@@ -1,8 +1,9 @@
 if (typeof window.hedgehog === 'undefined') { window.hedgehog = {}; }
 if (typeof window.hedgehog.SearchForm === 'undefined') {
 window.hedgehog.SearchForm = (function() {
-
     'use strict';
+
+    var COMPONENT = 'hedgehog_search_form';
 
     var s = function SearchForm($wrapper, debug) {
         this._debug = _.isUndefined(debug) ? false : !!debug;
@@ -21,12 +22,16 @@ window.hedgehog.SearchForm = (function() {
         return this.$_wrapper;
     };
 
+    s.prototype.subSelect = function(name) {
+        return this.getWrapper().find('.' + COMPONENT + '-' + name);
+    };
+
     s.prototype.getForm = function () {
-        return this.$_wrapper.find('.search_form');
+        return this.subSelect('element');
     };
 
     s.prototype.getRealForm = function () {
-        return this.$_wrapper.find('.real_search_form');
+        return this.subSelect('real-form');
     };
 
     s.prototype.setReps = function(reps) {
@@ -50,36 +55,34 @@ window.hedgehog.SearchForm = (function() {
     };
 
     s.prototype._loadReps = function () {
-        var self = this;
         var r = hedgehog.routes.controllers.Repositories.list();
         $.ajax({
             url: r.url,
             method: r.method,
             success: function(data) {
                 var keys = [];
-                $.each(data.repositories, function(_, rep) {
+                _.forIn(data.repositories, function(rep) {
                     keys.push(rep.full_name);
                 });
-                self.setReps(keys);
-                self.getForm().find(':submit').prop('disabled', false);
-            }
+                this.setReps(keys);
+                this.getForm().find(':submit').prop('disabled', false);
+            }.bind(this)
         });
     };
 
     s.prototype._bindForm = function () {
-        var self = this;
         var $form = this.getForm();
         var $rForm = this.getRealForm();
 
         $form.submit(function(event) {
             event.stopPropagation();
-            var baseQ = $form.find('input#text_search').val();
-            var q = baseQ + ' ' + self.getRepsKey();
+            var baseQ = this.subSelect('text-search').val();
+            var q = baseQ + ' ' + this.getRepsKey();
             var $qField = $rForm.find('input[name="q"]');
             $qField.val(q);
             $rForm.submit();
             return false;
-       });
+        }.bind(this));
     };
 
     return s;

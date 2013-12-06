@@ -2,33 +2,33 @@
 @(nav: String = "search", scripts: Html = Html(""), styles: Html = Html(""))(content: Html)(implicit lang: Lang)
 <!DOCTYPE html>
 <html lang="@lang.language">
-  <head>
-    <title>hedGeHog</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    <head>
+        <title>hedGeHog</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
 
-    <link href="@routes.Assets.at("bootstrap/css/bootstrap.min.css")" rel="stylesheet" media="screen">
-    <link href="@routes.Assets.at("bootstrap/css/bootstrap-theme.min.css")" rel="stylesheet" media="screen">
-    <link href="@routes.Assets.at("stylesheets/main.css")" rel="stylesheet" media="screen">
-    @styles
-  </head>
-  <body>
-    <div class="container">
-      @parts.navbar(nav)
-      @content
-    </div>
-    <script src="@routes.JsHelpers.jsRoutes"></script>
-      <script type="text/javascript">
-    //<![CDATA[
-    if (window.hedgehog == undefined) { window.hedgehog = {}; }
-    hedgehog.routes = window._routes;
-    window['_routes'] = undefined;
-    // ]]>
-    </script>
-    <script src="@routes.Assets.at("javascripts/jquery.min.js")"></script>
-    <script src="@routes.Assets.at("javascripts/lodash.min.js")"></script>
-    <script src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")"></script>
-    @scripts
-  </body>
+        <link href="@routes.Assets.at("bootstrap/css/bootstrap.min.css")" rel="stylesheet" media="screen">
+        <link href="@routes.Assets.at("bootstrap/css/bootstrap-theme.min.css")" rel="stylesheet" media="screen">
+        <link href="@routes.Assets.at("stylesheets/main.css")" rel="stylesheet" media="screen">
+        @styles
+    </head>
+    <body>
+        <div class="container">
+            @parts.navbar(nav)
+            @content
+        </div>
+        <script src="@routes.JsHelpers.jsRoutes"></script>
+        <script type="text/javascript">
+        //<![CDATA[
+            if (typeof window.hedgehog === 'undefined') { window.hedgehog = {}; }
+            hedgehog.routes = window._routes;
+            window['_routes'] = undefined;
+        // ]]>
+        </script>
+        <script src="@routes.Assets.at("javascripts/libs/jquery.min.js")"></script>
+        <script src="@routes.Assets.at("javascripts/libs/lodash.min.js")"></script>
+        <script src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")"></script>
+        @scripts
+    </body>
 </html>
