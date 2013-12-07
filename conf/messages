@@ -1,6 +1,9 @@
 nav.Search = Search
 nav.About = About
 
+footer.Issues = Issues
+footer.About = About
+
 About = About
 Author = Author
 Status = Status

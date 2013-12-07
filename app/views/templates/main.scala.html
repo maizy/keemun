@@ -14,10 +14,15 @@
         @styles
     </head>
     <body>
-        <div class="container">
-            @parts.navbar(nav)
-            @content
+        <div class="wrapper">
+            <div class="container">
+                @parts.navbar(nav)
+                @content
+            </div>
         </div>
+
+        @parts.footer()
+
         <script src="@routes.JsHelpers.jsRoutes"></script>
         <script type="text/javascript">
         //<![CDATA[
