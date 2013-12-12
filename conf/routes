@@ -8,6 +8,8 @@ GET        /status              controllers.Status.index
 
 GET        /repositories        controllers.Repositories.list
 
+POST       /language/set        controllers.Language.set
+
 GET        /js-routes           controllers.JsHelpers.jsRoutes
 
 GET        /assets/*file        controllers.Assets.at(path="/public", file)
