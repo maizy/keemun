@@ -3,7 +3,6 @@ package controllers
 import play.api.mvc.{Action, Controller}
 import play.api.i18n.Lang
 import play.api.Play.current
-import scala.util.control.NonFatal
 
 
 /**
@@ -13,22 +12,15 @@ import scala.util.control.NonFatal
 object Language extends Controller {
 
   def set = Action(parse.tolerantFormUrlEncoded) { implicit request =>
-    //FIXME: simplify with scala shugar
-    var lang: Option[Lang] = None
-    val maybeLang = request.body.get("lang").map(_.last)
-    if (maybeLang.isDefined) {
-      try {
-        lang = Some(Lang(maybeLang.get))
-      } catch {
-        case NonFatal(e) =>
-      }
-    }
+    val avalableLangCodes = Lang.availables.map(_.code)
+    val maybeLang = request.body.get("lang")
+      .map(_.last)
+      .filter(avalableLangCodes.contains(_))
+      .map(Lang(_))
     if (maybeLang.isEmpty) {
-      BadRequest("Language is required")
-    } else if (lang.isEmpty) {
-      BadRequest("Unknown language \"" + maybeLang.getOrElse("") + "\"")
+      BadRequest("One of those \""+ avalableLangCodes.mkString("\", \"") +"\" languages is required")
     } else {
-      Redirect(request.headers.get(REFERER).getOrElse("/")).withLang(lang.get)
+      Redirect(request.headers.get(REFERER).getOrElse("/")).withLang(maybeLang.get)
     }
   }
 }
