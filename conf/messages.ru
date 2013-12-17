@@ -3,6 +3,7 @@ nav.About = О сервисе
 
 footer.Issues = Предложения и замечания
 footer.About = О сервисе
+footer.ChooseLanguage = Выбрать язык (Choose language)
 
 About = О сервисе
 Author = Автор

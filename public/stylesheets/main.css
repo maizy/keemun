@@ -50,11 +50,32 @@ body {
     padding-left: 0;
 }
 
-.footer-links li {
+.footer-links > li {
     display: inline;
     padding: 0 2px;
 }
 
-.footer-links li:first-child {
+.footer-links > li:first-child {
     padding-left: 0;
+}
+
+.b-language-picker-footer {
+    display: inline-block;
+}
+    .b-language-picker-footer_wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .b-language-picker-footer_form {
+        display: none;
+    }
+
+/* TODO: is there anything in bootstrap for this? */
+.dropdown-menu>li>b, .dropdown-menu>li>span {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    line-height: 1.428571429;
+    white-space: nowrap;
 }

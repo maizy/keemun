@@ -34,6 +34,14 @@
         <script src="@routes.Assets.at("javascripts/libs/jquery.min.js")"></script>
         <script src="@routes.Assets.at("javascripts/libs/lodash.min.js")"></script>
         <script src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")"></script>
+        <script src="@routes.Assets.at("javascripts/hedgehog/language-picker.js")"></script>
         @scripts
+        <script type="text/javascript">
+        //<![CDATA[
+        $(function () {
+            new hedgehog.LanguagePicker($('.hedgehog_language-picker'));
+        });
+        // ]]>
+        </script>
     </body>
 </html>

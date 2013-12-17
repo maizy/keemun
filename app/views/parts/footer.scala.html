@@ -11,6 +11,25 @@
             <li><a href="@routes.Frontend.about">@Messages("footer.About")</a></li>
             <li>·</li>
             <li><a href="https://github.com/maizy/heDgeHog/issues?state=open">@Messages("footer.Issues")</a></li>
+            <li>·</li>
+            <li>
+                <span class="hedgehog_language-picker b-language-picker-footer">
+                    <div class="dropup b-language-picker-footer_wrapper">
+                        <a class="dropdown-toggle b-language-picker-footer_link" data-toggle="dropdown" href="#">
+                            @Messages("footer.ChooseLanguage")
+                        </a>
+                        <ul class="dropdown-menu hedgehog_language-picker--langs">
+                            <li><a href="#" data-lang-code="en" class="hedgehog_language-picker--lang">EN</a></li>
+                            <li><a href="#" data-lang-code="ru" class="hedgehog_language-picker--lang">RU</a></li>
+                            @*<li><b data-lang-code="sl" class="hedgehog_language-picker--lang">SL</b></li>*@
+                        </ul>
+                    </div>
+                    <form class="hedgehog_language-picker--form b-language-picker-footer_form"
+                          action="@routes.Language.set" method="post">
+                        <input type="text" name="lang" value=""/>
+                    </form>
+                </span>
+            </li>
         </ul>
     </div>
 </div>
