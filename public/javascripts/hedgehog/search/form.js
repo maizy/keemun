@@ -11,7 +11,7 @@ window.hedgehog.SearchForm = (function() {
         this._reps = [];
         this._repsKey = undefined;
 
-        if ($wrapper.length === 0) {
+        if (_.isUndefined($wrapper) || $wrapper.length === 0) {
             hedgehog.utils.error('Search form wrapper not found');
         } else {
             $(this.init.bind(this));
@@ -23,7 +23,7 @@ window.hedgehog.SearchForm = (function() {
     };
 
     s.prototype.subSelect = function(name) {
-        return this.getWrapper().find('.' + COMPONENT + '-' + name);
+        return this.getWrapper().find('.' + COMPONENT + '--' + name);
     };
 
     s.prototype.getForm = function () {

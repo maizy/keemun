@@ -18,12 +18,12 @@
 @templates.main(scripts = scripts, nav = "search") {
     <div class="row">
         <div class="hedgehog_search_form col-lg-10 col-lg-offset-1">
-            <form action="https://github.com/search" method="GET" class="hedgehog_search_form-element">
+            <form action="https://github.com/search" method="GET" class="hedgehog_search_form--element">
                 <fieldset>
                     <div class="form-group">
                         <label for="text_search">@Messages("Code_search")</label>
                         <input id="text_search" type="text" required
-                               class="form-control input-lg hedgehog_search_form-text-search"
+                               class="form-control input-lg hedgehog_search_form--text-search"
                         />
                     </div>
                     <button type="submit" class="btn btn-lg btn-primary" disabled="disabled">
@@ -32,7 +32,7 @@
                 </fieldset>
             </form>
 
-            <form action="https://github.com/search" method="GET" class="hedgehog_search_form-real-form"
+            <form action="https://github.com/search" method="GET" class="hedgehog_search_form--real-form"
                   style="display : none ;">
                 <input type="text" name="q" style="width: 800px;"/>
                 <input type="text" name="type" value="Code"/>
