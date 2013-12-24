@@ -1,7 +1,7 @@
 @* TODO: use some helper for navigation *@
-@(nav: String = "search", scripts: Html = Html(""), styles: Html = Html(""))(content: Html)(implicit lang: Lang)
+@(nav: String = "search", scripts: Html = Html(""), styles: Html = Html(""))(content: Html)(implicit c: hedgehog.views.ViewContext)
 <!DOCTYPE html>
-<html lang="@lang.language">
+<html lang="@c.lang.code">
     <head>
         <title>hedGeHog</title>
         <meta charset="utf-8">

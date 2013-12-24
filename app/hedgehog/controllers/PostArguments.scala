@@ -1,4 +1,4 @@
-package hedgehog.controller.helper
+package hedgehog.controllers
 
 import play.api.mvc.{Controller, Request, AnyContent}
 

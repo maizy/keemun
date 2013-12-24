@@ -1,11 +1,11 @@
-@(version: String)(implicit lang: Lang)
+@(version: String)(implicit c: hedgehog.views.ViewContext)
 
 @templates.main(nav = "about") {
     <div>
-        <h1>@Messages("About")</h1>
+        <h1>@c.Messages("About")</h1>
         <p class="lead">
             hedGeHog v&thinsp;@version<br/>
-            @Messages("Author"): Nikita Kovaliov, 2013<br/>
+            @c.Messages("Author"): Nikita Kovaliov, 2013<br/>
             <a href="https://github.com/maizy/hedGeHog">https://github.com/maizy/hedGeHog</a>
         </p>
     </div>

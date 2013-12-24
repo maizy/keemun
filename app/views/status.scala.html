@@ -1,6 +1,6 @@
-@()(implicit lang: Lang)
+@()(implicit c: hedgehog.views.ViewContext)
 
 @templates.main(nav = "status") {
-    <h1>@Messages("Status")</h1>
+    <h1>@c.Messages("Status")</h1>
     TODO.
 }

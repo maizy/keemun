@@ -1,9 +1,8 @@
 package controllers
 
-import play.api._
-import play.api.mvc._
-import play.api.libs.json._
-import hedgehog.models._
+import play.api.mvc.{Action, Controller}
+import play.api.libs.json.Json
+import hedgehog.models.Repo
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2013

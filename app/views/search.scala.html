@@ -1,4 +1,4 @@
-@()(implicit lang: Lang)
+@()(implicit c: hedgehog.views.ViewContext)
 
 @scripts = {
   <script src="@routes.Assets.at("javascripts/hedgehog/utils.js")"></script>
@@ -21,13 +21,13 @@
             <form action="https://github.com/search" method="GET" class="hedgehog_search_form--element">
                 <fieldset>
                     <div class="form-group">
-                        <label for="text_search">@Messages("Code_search")</label>
+                        <label for="text_search">@c.Messages("Code_search")</label>
                         <input id="text_search" type="text" required
                                class="form-control input-lg hedgehog_search_form--text-search"
                         />
                     </div>
                     <button type="submit" class="btn btn-lg btn-primary" disabled="disabled">
-                        @Messages("go_search_button")
+                        @c.Messages("go_search_button")
                     </button>
                 </fieldset>
             </form>

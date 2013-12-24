@@ -1,5 +1,5 @@
 @* TODO: use some helper *@
-@()(implicit l: Lang)
+@()(implicit c: hedgehog.views.ViewContext)
 
 <div class="footer">
     <div class="container">
@@ -8,15 +8,15 @@
             <li>·</li>
             <li>v&thinsp;0.0.1</li>@* FIXME: use var *@
             <li>·</li>
-            <li><a href="@routes.Frontend.about">@Messages("footer.About")</a></li>
+            <li><a href="@routes.Frontend.about">@c.Messages("footer.About")</a></li>
             <li>·</li>
-            <li><a href="https://github.com/maizy/heDgeHog/issues?state=open">@Messages("footer.Issues")</a></li>
+            <li><a href="https://github.com/maizy/heDgeHog/issues?state=open">@c.Messages("footer.Issues")</a></li>
             <li>·</li>
             <li>
                 <span class="hedgehog_language-picker b-language-picker-footer">
                     <div class="dropup b-language-picker-footer_wrapper">
                         <a class="dropdown-toggle b-language-picker-footer_link" data-toggle="dropdown" href="#">
-                            @Messages("footer.ChooseLanguage")
+                            @c.Messages("footer.ChooseLanguage")
                         </a>
                         <ul class="dropdown-menu hedgehog_language-picker--langs">
                             <li><a href="#" data-lang-code="en" class="hedgehog_language-picker--lang">EN</a></li>

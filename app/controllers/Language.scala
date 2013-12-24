@@ -3,7 +3,7 @@ package controllers
 import play.api.mvc.{Action, Controller}
 import play.api.i18n.Lang
 import play.api.Play.current
-import hedgehog.controller.helper.PostArguments
+import hedgehog.controllers.PostArguments
 
 
 /**
