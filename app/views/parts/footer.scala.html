@@ -4,13 +4,13 @@
 <div class="footer">
     <div class="container">
         <ul class="footer-links text-muted">
-            <li>&copy;&thinsp;2013</li>
+            <li>&copy;&thinsp;@c.copyrightYears</li>
             <li>·</li>
-            <li>v&thinsp;0.0.1</li>@* FIXME: use var *@
+            <li>v&thinsp;@c.version</li>
             <li>·</li>
             <li><a href="@routes.Frontend.about">@c.Messages("footer.About")</a></li>
             <li>·</li>
-            <li><a href="https://github.com/maizy/heDgeHog/issues?state=open">@c.Messages("footer.Issues")</a></li>
+            <li><a href="@c.hedgehogRepoUrl/issues?state=open">@c.Messages("footer.Issues")</a></li>
             <li>·</li>
             <li>
                 <span class="hedgehog_language-picker b-language-picker-footer">
@@ -19,9 +19,19 @@
                             @c.Messages("footer.ChooseLanguage")
                         </a>
                         <ul class="dropdown-menu hedgehog_language-picker--langs">
-                            <li><a href="#" data-lang-code="en" class="hedgehog_language-picker--lang">EN</a></li>
-                            <li><a href="#" data-lang-code="ru" class="hedgehog_language-picker--lang">RU</a></li>
-                            @*<li><b data-lang-code="sl" class="hedgehog_language-picker--lang">SL</b></li>*@
+                            @for(l <- c.availableLanguages) {
+                                <li>
+                                @if(l == c.lang) {
+                                    <b data-lang-code="@l.code" class="hedgehog_language-picker--lang">
+                                        @l.code.toUpperCase
+                                    </b>
+                                } else {
+                                    <a href="#" data-lang-code="@l.code" class="hedgehog_language-picker--lang">
+                                        @l.code.toUpperCase
+                                    </a>
+                                }
+                                </li>
+                            }
                         </ul>
                     </div>
                     <form class="hedgehog_language-picker--form b-language-picker-footer_form"

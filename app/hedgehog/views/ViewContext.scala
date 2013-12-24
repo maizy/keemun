@@ -9,8 +9,11 @@ import play.api.Play.current
  * See LICENSE.txt for details.
  */
 class ViewContext (val controller: Request[AnyContent], val requestLang: i18n.Lang) {
-  val availableLanguages = i18n.Lang.availables
+  lazy val availableLanguages = i18n.Lang.availables
   val lang: i18n.Lang = requestLang
+  val hedgehogRepoUrl = "https://github.com/maizy/hedGeHog"
+  val version = "0.0.1" //TODO: from config
+  val copyrightYears = "2013"
 
   def Messages(key: String, args: Any*) = {
     i18n.Messages(key, args)(lang)
