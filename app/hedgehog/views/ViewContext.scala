@@ -13,7 +13,7 @@ class ViewContext (val controller: Request[AnyContent], val requestLang: i18n.La
   val lang: i18n.Lang = requestLang
   val hedgehogRepoUrl = "https://github.com/maizy/hedGeHog"
   val version = "0.0.1" //TODO: from config
-  val copyrightYears = "2013"
+  val copyrightYears = "2013-2014"
 
   def Messages(key: String, args: Any*) = {
     i18n.Messages(key, args)(lang)
