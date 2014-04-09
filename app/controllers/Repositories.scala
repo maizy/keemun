@@ -2,7 +2,7 @@ package controllers
 
 import play.api.mvc.{Action, Controller}
 import play.api.libs.json.Json
-import hedgehog.models.Repo
+import hedgehog.models.{Repo, ConfigError}
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2013
@@ -10,10 +10,12 @@ import hedgehog.models.Repo
  */
 object Repositories extends Controller {
   def list = Action { implicit request =>
-    val repos = Repo.getCurrentRepos
-    Ok(Json.obj(
-      "repositories" -> repos
-      //"groups" -> Json.
-    ))
+    try {
+      Ok(Json.obj(
+        "repositories" -> Repo.getCurrentRepos
+      ))
+    } catch {
+      case ex: ConfigError => InternalServerError(ex.toString)
+    }
   }
 }
