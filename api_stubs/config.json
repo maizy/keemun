@@ -1,0 +1,91 @@
+/**
+ * stubs for api.github.com for offline use
+ *
+ * see config format description at:
+ * https://github.com/maizy/zaglushka/blob/master/examples/example.json
+ * */
+{
+    "stubs_base_path": "./api.github.com",
+    "urls": [
+
+        // org repos (with private repos)
+        {
+            "path": "/orgs/hhru/repos",
+            "query": {
+                "required": {
+                    "page": "1",
+                    "per_page": "100"
+                }
+            },
+
+            "response_file": "/orgs/hhru/repos/page1.json",
+            "headers_file": "/orgs/hhru/repos/page1.headers"
+        },
+
+        {
+            "path": "/organizations/12345/repos",
+            "query": {
+                "required": {
+                    "page": "1",
+                    "per_page": "100"
+                }
+            },
+
+            "response_file": "/orgs/hhru/repos/page1.json",
+            "headers_file": "/orgs/hhru/repos/page1.headers"
+        },
+
+        {
+            "path": "/orgs/hhru/repo",
+            "query": {
+                "required": {
+                    "page": "2",
+                    "per_page": "100"
+                }
+            },
+
+            "response_file": "/orgs/hhru/repos/page2.json",
+            "headers_file": "/orgs/hhru/repos/page2.headers"
+        },
+
+        {
+            "path": "/orgs/hhru/repo",
+            "query": {
+                "required": {
+                    "page": "2",
+                    "per_page": "100"
+                }
+            },
+
+            "response_file": "/orgs/hhru/repos/page2.json",
+            "headers_file": "/orgs/hhru/repos/page2.headers"
+        },
+
+        {
+            "path": "/organizations/12345/repos",
+            "query": {
+                "required": {
+                    "page": "2",
+                    "per_page": "100"
+                }
+            },
+
+            "response_file": "/orgs/hhru/repos/page2.json",
+            "headers_file": "/orgs/hhru/repos/page2.headers"
+        },
+
+        // user repos (public repos only)
+        {
+            "path": "/users/maizy/repos",
+            "query": {
+                "required": {
+                    "page": "1",
+                    "per_page": "100"
+                }
+            },
+
+            "response_file": "/users/maizy/repos/page1.json",
+            "headers_file": "/users/maizy/repos/page1.headers"
+        }
+    ]
+}
