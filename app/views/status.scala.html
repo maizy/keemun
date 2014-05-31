@@ -1,6 +1,16 @@
-@()(implicit c: hedgehog.views.ViewContext)
+@(githubConfig: hedgehog.clients.github.Config)(implicit c: hedgehog.views.ViewContext)
 
 @templates.main(nav = "status") {
     <h1>@c.Messages("Status")</h1>
-    TODO.
+
+    <h3>Some configs:</h3>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>github base api url</td>
+                <td>@githubConfig.apiBaseUrl</td>
+            </tr>
+        </tbody>
+    </table>
 }
