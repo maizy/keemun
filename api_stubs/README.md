@@ -9,7 +9,7 @@ Emulate github api.
 
 ### Run
 ```
-zaglushka.py --ports 8000 --config=api_stubs/config.json
+zaglushka.py --ports=8000 --config=api_stubs/config.json
 ```
 
 Run this app with special value in `github.api_url`. For example:
