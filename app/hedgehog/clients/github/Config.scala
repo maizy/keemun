@@ -1,5 +1,6 @@
 package hedgehog.clients.github
 
+import java.util.regex.Pattern
 import play.api.Application
 
 /**
@@ -7,7 +8,25 @@ import play.api.Application
  * See LICENSE.txt for details.
  */
 
-class Config(val apiBaseUrl: String)
+class Config(val apiBaseUrl: String) {
+
+  def replaceBaseUrl(url: String): String = {
+    var processedUrl = url
+    for (prefix <- List("https://", "http://")) {
+      if (processedUrl.toLowerCase startsWith prefix) {
+        processedUrl = processedUrl.substring(prefix.length)
+      }
+    }
+
+    val postfixSlash = if (processedUrl endsWith "/") "/" else ""
+    val parts = processedUrl.stripSuffix("/").split(Pattern.quote("/")).toList
+    parts match {
+      case List() => url
+      case List(domain) => apiBaseUrl + postfixSlash
+      case domain :: paths => apiBaseUrl +"/"+ paths.mkString("/") + postfixSlash
+    }
+  }
+}
 
 object Config {
   def fromPlayApp(app: Application) = {
