@@ -28,6 +28,7 @@ class Config(val apiBaseUrl: String) {
   }
 }
 
+
 object Config {
   def fromPlayApp(app: Application) = {
     val baseUrl = app.configuration.getString("github.api_url")

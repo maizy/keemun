@@ -8,11 +8,9 @@ import play.api.mvc.{Controller, Request, AnyContent}
  */
 trait PostArguments extends Controller {
 
-  def postArgSeq(name: String)(implicit request: Request[AnyContent]) : Option[Seq[String]] = {
+  def postArgSeq(name: String)(implicit request: Request[AnyContent]): Option[Seq[String]] =
     request.body.asFormUrlEncoded.flatMap(_.get(name))
-  }
 
-  def postArg(name: String)(implicit request: Request[AnyContent]) : Option[String] = {
+  def postArg(name: String)(implicit request: Request[AnyContent]): Option[String] =
     postArgSeq(name).map(_.last)
-  }
 }
