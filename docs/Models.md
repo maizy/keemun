@@ -6,11 +6,13 @@
 * Repo
  * isPrivate: Boolean
  * name
+ * owner: GithubAccount
  * url
  * fullName
  * description
  * primaryLang: Option[ProgrammingLang]
- * langsStat: Option[Map[langCode: String, ProgrammingLang]]
+ * langsStat: Option[Seq[ProgrammingLang]]
+ * langsStatIndex: Option[Map[langCode: String, ProgrammingLang]]
 
 <a name="prog_lang"/>
 ## Programming Language
@@ -24,14 +26,13 @@
  * bytes: Option[Long]
 
 <a name="github_account" />
-## GitHubAccount
+## GithubAccount
 
-* GitHubAccount
+* GithubAccount
  * name
- * profileUrl
+ * webProfileUrl
  * avatarUrl
- * _private_ repoBaseUrl
  * getRepoUrl(r: Repo)
 
-* _case class_ GitHubUser
-* _case class_ GItHubCorp
+* _case class_ GithubUser
+* _case class_ GIthubOrg
