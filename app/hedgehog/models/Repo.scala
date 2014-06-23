@@ -7,7 +7,7 @@ import play.api.libs.json._
  */
 class Repo(
     val name: String,
-    val owner: GithubAccount,
+    val owner: Account,
     val description: Option[Boolean] = None,
     val isPrivate: Option[Boolean] = None,
     val primaryLang: Option[ProgrammingLang] = None,

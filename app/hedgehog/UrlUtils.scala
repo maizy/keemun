@@ -7,11 +7,11 @@ import play.utils.UriEncoding.encodePathSegment
  */
 object UrlUtils {
 
-  def urlEncodePathSegment(segment: String) {
+  def urlEncodePathSegment(segment: String): String = {
     encodePathSegment(segment, "utf-8")
   }
   
-  def urlEncode(param: String) {
+  def urlEncode(param: String): String = {
     java.net.URLEncoder.encode(param, "utf-8")
   }
 }

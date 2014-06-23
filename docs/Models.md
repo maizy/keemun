@@ -25,10 +25,10 @@
  * extensions: Seq[String]
  * bytes: Option[Long]
 
-<a name="github_account" />
-## GithubAccount
+<a name="account" />
+## Account
 
-* GithubAccount
+* Account
  * name
  * webProfileUrl
  * avatarUrl

@@ -43,3 +43,4 @@ tmp
 # project specific
 /run.sh
 /test_data/
+/conf/application.conf

@@ -1,6 +1,6 @@
 # This is the main configuration file for the application.
 # Syntax - HOCON: https://github.com/typesafehub/config#examples-of-hocon
-# ~~~~~
+
 
 # Sources
 # -------
@@ -9,20 +9,23 @@ github {
     api_url = "https://api.github.com"
 
     # App token for github api access
-    #
+    # -------------------------------
     # Generate it on: [https://github.com/settings/applications]
     # Scope `public_repo` is required.
     # For fetching private organization repositories also add `repo` scope.
-    app_token = "349ae2dae1d0eecb3a131a6ca92a579ec2aa5b74"
+    app_token = "aaaabbbbccccddddeeeeffff0000111122223333"
 
-    # key - user/org name, value - options
+    # Sources for searching
+    # ---------------------
+    # key - user/org name
+    # value - options, use `{}` if no additional options used
     sources: [
         # users
         torvalds  # simply add one name per line
 
         # or add user with some options
         {
-            name = maizy
+            name: maizy
 
             ## Avalable options:
 
@@ -48,7 +51,7 @@ github {
 
 # Application settings
 # --------------------
-application: {
+application : {
 
     # Secret key
     # ----------
