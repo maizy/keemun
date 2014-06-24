@@ -11,7 +11,7 @@ object Frontend extends Controller with WithViewContext {
   }
 
   def about = Action { implicit request =>
-    Ok(views.html.about())  //TODO: use project config
+    Ok(views.html.about())
   }
 
 }

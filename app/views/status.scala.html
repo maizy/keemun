@@ -1,4 +1,4 @@
-@(githubConfig: hedgehog.clients.github.Config)(implicit c: hedgehog.views.ViewContext)
+@(config: hedgehog.Config)(implicit c: hedgehog.views.ViewContext)
 
 @templates.main(nav = "status") {
     <h1>@c.Messages("Status")</h1>
@@ -9,7 +9,7 @@
         <tbody>
             <tr>
                 <td>github base api url</td>
-                <td>@githubConfig.apiBaseUrl</td>
+                <td>@config.apiBaseUrl</td>
             </tr>
         </tbody>
     </table>

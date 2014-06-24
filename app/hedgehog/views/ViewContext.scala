@@ -4,6 +4,8 @@ import play.api.mvc.{AnyContent, Request}
 import play.api.i18n
 import play.api.Play.current
 
+import hedgehog.Config.playAppInstance
+
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2013
  * See LICENSE.txt for details.
@@ -13,9 +15,9 @@ class ViewContext(
     val requestLang: i18n.Lang) {
   lazy val availableLanguages = i18n.Lang.availables
   val lang: i18n.Lang = requestLang
-  val hedgehogRepoUrl = "https://github.com/maizy/hedGeHog"
-  val version = "0.0.1"
-  val copyrightYears = "2013-2014"
+  val projectRepoUrl = playAppInstance.projectRepoUrl
+  val version = playAppInstance.version
+  val copyrightYears = playAppInstance.copyrightYears
 
   def Messages(key: String, args: Any*) = {
     i18n.Messages(key, args)(lang)

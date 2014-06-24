@@ -1,7 +1,6 @@
 package hedgehog.clients.github
 
 import java.util.regex.Pattern
-import play.api.Application
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014
@@ -25,14 +24,5 @@ class Config(val apiBaseUrl: String) {
       case List(domain) => apiBaseUrl + postfixSlash
       case domain :: paths => apiBaseUrl +"/"+ paths.mkString("/") + postfixSlash
     }
-  }
-}
-
-
-object Config {
-  def fromPlayApp(app: Application) = {
-    val baseUrl = app.configuration.getString("github.api_url")
-      .getOrElse("https://api.github.com").stripSuffix("/")
-    new Config(baseUrl)
   }
 }
