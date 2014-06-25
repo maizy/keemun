@@ -1,6 +1,7 @@
 package controllers
 
 import play.api.mvc.{Action, Controller}
+import play.core.PlayVersion
 import hedgehog.controllers.WithViewContext
 import hedgehog.Config.playAppInstance
 
@@ -10,6 +11,6 @@ import hedgehog.Config.playAppInstance
  */
 object Status extends Controller with WithViewContext {
   def index = Action { implicit request =>
-    Ok(views.html.status(playAppInstance))
+    Ok(views.html.status(playAppInstance, PlayVersion.current, PlayVersion.scalaVersion))
   }
 }

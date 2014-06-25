@@ -7,7 +7,10 @@ footer.ChooseLanguage = Выбрать язык (Choose language)
 
 About = О сервисе
 Author = Автор
-Status = Состояние
+Status = Статус
 
 Code_search = Поиск по коду
 go_search_button = Искать!
+
+Versions=Версии
+Some_configs=Некоторые настройки
