@@ -3,14 +3,14 @@ nav.About = About
 
 footer.Issues = Issues
 footer.About = About
-footer.ChooseLanguage = Choose language
+footer.Choose_language = Choose language
 
 About = About
 Author = Author
 Status = Status
 
 Code_search = Code search
-go_search_button = Go!
+Go_search_button = Go!
 
 Versions=Versions
 Some_configs=Some configs
