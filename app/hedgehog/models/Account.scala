@@ -26,7 +26,7 @@ trait Account {
   protected def baseWebUrl: String = GITHUB_BASE_WEB_URL
 
   def webProfileUrl: String =
-    s"$baseWebUrl/${urlEncodePathSegment(this.name)}" //FIXME: wtf? ${urlEncodePathSegment(this.name)} == "()"
+    s"$baseWebUrl/${urlEncodePathSegment(this.name)}"
 
   def getRepoUrl(repo: Repo): String =
     s"$webProfileUrl/${urlEncodePathSegment(repo.fullName)}"

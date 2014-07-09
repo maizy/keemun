@@ -41,6 +41,7 @@ object AccountSettings {
   def apply(config: ConfigObject): AccountSettings = AccountSettings(config.toConfig)
 
   def apply(config: Config): AccountSettings = {
+    //TODO: use some typesafe.config wrapper
     val isOrg = try {
       config.getBoolean("org")
     } catch {
@@ -52,10 +53,15 @@ object AccountSettings {
       case e: com.typesafe.config.ConfigException =>
         throw new ConfigError(s"wrong 'name' for source: $config")
     }
+    val includePrivate = try {
+      config.getBoolean("include_private_repos")
+    } catch {
+      case e: com.typesafe.config.ConfigException => false
+    }
     if (isOrg) {
-      new AccountSettings(GithubOrg(name))
+      new AccountSettings(GithubOrg(name), includePrivate)
     } else {
-      new AccountSettings(GithubUser(name))
+      new AccountSettings(GithubUser(name), includePrivate)
     }
   }
 
