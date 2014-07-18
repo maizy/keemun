@@ -5,3 +5,4 @@ package hedgehog.clients.github
  * See LICENSE.txt for details.
  */
 class Error(msg: String) extends Exception(msg)
+class FetchError(msg: String) extends Exception(msg)

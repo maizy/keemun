@@ -2,17 +2,17 @@ package hedgehog.models
 
 import scala.collection.JavaConversions._
 
-import play.api.Play.current
 import play.api.libs.json.{Json, JsValue, Writes}
+import play.api.Configuration
 import com.typesafe.config.{ConfigValueType, ConfigObject, ConfigList, Config}
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014
  * See LICENSE.txt for details.
  */
-object Sources {
-  lazy val accountsSettings: Seq[AccountSettings] = {
-    current.configuration.getList("github.sources") match {
+class Sources(configuration: Configuration) {
+  lazy val accountsSettings: Seq[AccountSettings] =
+    configuration.getList("github.sources") match {
       case Some(sourcesConfig: ConfigList) =>
         sourcesConfig.map {
             cfg => cfg.valueType() match {
@@ -23,14 +23,12 @@ object Sources {
           }.flatten.toList
       case _ => throw new ConfigError("github.sources config path not defined")
     }
-  }
 }
 
 
 class AccountSettings(
    val account: Account,
-   val includePrivateRepos: Boolean = false) {
-}
+   val includePrivateRepos: Boolean = false)
 
 
 object AccountSettings {
