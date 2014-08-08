@@ -7,7 +7,7 @@ import java.util.regex.Pattern
  * See LICENSE.txt for details.
  */
 
-class Config(val apiBaseUrl: String) {
+class Config(val apiBaseUrl: String, val accessToken: Option[String]) {
 
   def replaceBaseUrl(url: String): String = {
     var processedUrl = url

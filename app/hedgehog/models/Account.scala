@@ -1,8 +1,7 @@
 package hedgehog.models
 
-import play.api.libs.json.{Json, JsValue, Writes}
+import play.api.libs.json._
 import hedgehog.UrlUtils.urlEncodePathSegment
-
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014
@@ -30,6 +29,8 @@ trait Account {
 
   def getRepoUrl(repo: Repo): String =
     s"$webProfileUrl/${urlEncodePathSegment(repo.fullName)}"
+
+  def apiReposUrl: String
 }
 
 
@@ -54,6 +55,7 @@ case class GithubUser(
   extends Account {
 
   val accountType = AccountType.User
+  val apiReposUrl = s"$GITHUB_BASE_API_URL/users/${urlEncodePathSegment(name)}/repos"
 }
 
 
@@ -63,4 +65,5 @@ case class GithubOrg(
   extends Account {
 
   val accountType = AccountType.Org
+  val apiReposUrl = s"$GITHUB_BASE_API_URL/orgs/${urlEncodePathSegment(name)}/repos"
 }

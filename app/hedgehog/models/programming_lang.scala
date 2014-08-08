@@ -5,10 +5,10 @@ package hedgehog.models
  * See LICENSE.txt for details.
  *
  */
-class ProgrammingLang(val code: String)
+case class ProgrammingLang(code: String)
 
 
-class ProgrammingLangStat(
-    val lang: ProgrammingLang,
-    val extensions: Seq[String],
-    val bytes: Option[Long])
+case class ProgrammingLangStat(
+    lang: ProgrammingLang,
+    extensions: Seq[String],
+    bytes: Option[Long])

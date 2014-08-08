@@ -15,7 +15,10 @@ import hedgehog.models.Sources
 class Config (appConfiguration: Configuration, asyncContext: ExecutionContext) {
   val apiBaseUrl = appConfiguration.getString("github.api_url")
                    .getOrElse("https://api.github.com").stripSuffix("/")
-  lazy val githubClientConfig = new hedgehog.clients.github.Config(apiBaseUrl)
+  lazy val githubClientConfig = new hedgehog.clients.github.Config(
+    apiBaseUrl,
+    accessToken = appConfiguration.getString("github.app_token")
+  )
   lazy val githubClient = new github.Client(githubClientConfig, asyncContext) //TODO: is there good place for that?
 
 

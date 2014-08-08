@@ -15,8 +15,8 @@ class ConfigSuite extends FunSuite with Matchers {
   import hedgehog.clients.github.Config
 
   trait SampleConfigs {
-    val config = new Config(apiBaseUrl = "http://base")
-    val configWithPort = new Config(apiBaseUrl = "http://base:8880")
+    val config = new Config(apiBaseUrl = "http://base", accessToken = None)
+    val configWithPort = new Config(apiBaseUrl = "http://base:8880", accessToken = None)
   }
 
   test("apiBaseUrl property") {

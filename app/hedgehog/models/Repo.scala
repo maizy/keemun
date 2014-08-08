@@ -5,13 +5,13 @@ import play.api.libs.json._
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2013-2014
  * See LICENSE.txt for details.
  */
-class Repo(
-    val name: String,
-    val owner: Account,
-    val description: Option[Boolean] = None,
-    val isPrivate: Option[Boolean] = None,
-    val primaryLang: Option[ProgrammingLang] = None,
-    val langsStat: Option[Seq[ProgrammingLangStat]] = None) {
+case class Repo(
+    name: String,
+    owner: Account,
+    description: Option[String] = None,
+    isPrivate: Option[Boolean] = None,
+    primaryLang: Option[ProgrammingLang] = None,
+    langsStat: Option[Seq[ProgrammingLangStat]] = None) {
   def fullName = s"${owner.name}/$name"
   lazy val langsStatIndex = langsStat.map(seq => seq.map{stat => (stat.lang.code, stat)}.toMap)
   def url: String = owner.getRepoUrl(this)
@@ -19,11 +19,9 @@ class Repo(
 
 
 object Repo {
-  //FIXME
-  def getCurrentRepos: Seq[Repo] = List()
 
-  implicit val writer = new Writes[Repo] {
-    def writes(r: Repo) : JsValue = {
+  implicit val repoWrites = new Writes[Repo] {
+    def writes(r: Repo): JsValue = {
       //FIXME: as documented
       Json.obj(
         "name" -> r.name,
