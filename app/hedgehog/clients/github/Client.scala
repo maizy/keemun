@@ -52,7 +52,7 @@ class Client(val config: Config, implicit val context: scala.concurrent.Executio
           "type" -> "open"
         )
         match {
-          case h if accountSettings.includePrivateRepos => h.withQueryString("type" ->"private", "type" -> "open")
+          case h if accountSettings.includePrivateRepos => h.withQueryString("type" ->"private")
           case h => h
         }
       ) match {

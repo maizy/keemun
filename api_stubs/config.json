@@ -14,7 +14,8 @@
             "query": {
                 "required": {
                     "page": "1",
-                    "per_page": "100"
+                    "per_page": "100",
+                    "type": ["open", "private"]
                 }
             },
 
@@ -27,7 +28,8 @@
             "query": {
                 "required": {
                     "page": "1",
-                    "per_page": "100"
+                    "per_page": "100",
+                    "type": ["open", "private"]
                 }
             },
 
@@ -40,20 +42,8 @@
             "query": {
                 "required": {
                     "page": "2",
-                    "per_page": "100"
-                }
-            },
-
-            "response_file": "orgs/hhru/repos/page2.json",
-            "headers_file": "orgs/hhru/repos/page2.headers"
-        },
-
-        {
-            "path": "/orgs/hhru/repos",
-            "query": {
-                "required": {
-                    "page": "2",
-                    "per_page": "100"
+                    "per_page": "100",
+                    "type": ["open", "private"]
                 }
             },
 
@@ -66,7 +56,8 @@
             "query": {
                 "required": {
                     "page": "2",
-                    "per_page": "100"
+                    "per_page": "100",
+                    "type": ["open", "private"]
                 }
             },
 
@@ -80,7 +71,8 @@
             "query": {
                 "required": {
                     "page": "1",
-                    "per_page": "100"
+                    "per_page": "100",
+                    "type": "open"
                 }
             },
 

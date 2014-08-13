@@ -41,6 +41,6 @@ tmp
 /.settings
 
 # project specific
-/run.sh
+/run*.sh
 /test_data/
 /conf/application.conf
