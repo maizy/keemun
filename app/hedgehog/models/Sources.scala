@@ -29,6 +29,21 @@ class Sources(configuration: Configuration) {
 class AccountSettings(
    val account: Account,
    val includePrivateRepos: Boolean = false)
+{
+
+  def canEqual(other: Any): Boolean = other.isInstanceOf[AccountSettings]
+
+  override def equals(other: Any): Boolean = other match {
+    case that: AccountSettings =>
+      (that canEqual this) &&
+        account == that.account &&
+        includePrivateRepos == that.includePrivateRepos
+    case _ => false
+  }
+
+  override def hashCode(): Int =
+    Seq(account, includePrivateRepos).map(_.hashCode).foldLeft(0)((a, b) => 31 * a + b)
+}
 
 
 object AccountSettings {
