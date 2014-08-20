@@ -9,6 +9,7 @@ val userAccount = GithubUser("user", Some("http://example.com/u.png"))
 val orgAccount = GithubOrg("org", Some("http://example.com/o.png"))
 
 val userAccountSettings = new AccountSettings(userAccount, includePrivateRepos = false)
+val userAccountSettings2 = new AccountSettings(userAccount, includePrivateRepos = false)
 val orgAccountSettings = new AccountSettings(orgAccount, includePrivateRepos = true)
 val accountSettings = userAccountSettings :: orgAccountSettings :: Nil
 
@@ -21,3 +22,7 @@ val orgRepoY = new Repo("y", userAccount, Some("some description y"), isPrivate 
 val orgRepos = orgRepoZ :: orgRepoY :: Nil
 
 val repos = userRepos ++ userRepos
+
+import play.api.libs.concurrent.Execution.Implicits._
+import scala.concurrent.duration._
+import scala.concurrent._

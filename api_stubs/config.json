@@ -18,7 +18,7 @@
                     "type": ["open", "private"]
                 }
             },
-
+            "delay": 1.5,
             "response_file": "orgs/hhru/repos/page1.json",
             "headers_file": "orgs/hhru/repos/page1.headers"
         },
@@ -46,7 +46,7 @@
                     "type": ["open", "private"]
                 }
             },
-
+            "delay": 0.5,
             "response_file": "orgs/hhru/repos/page2.json",
             "headers_file": "orgs/hhru/repos/page2.headers"
         },

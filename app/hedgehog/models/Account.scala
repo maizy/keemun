@@ -31,6 +31,9 @@ trait Account {
     s"$webProfileUrl/${urlEncodePathSegment(repo.fullName)}"
 
   def apiReposUrl: String
+
+  override def toString: String =
+    s"Account($accountType: $name)"
 }
 
 

@@ -43,6 +43,9 @@ class AccountSettings(
 
   override def hashCode(): Int =
     Seq(account, includePrivateRepos).map(_.hashCode).foldLeft(0)((a, b) => 31 * a + b)
+
+  override def toString: String =
+    s"AccountSettings($account, includePrivateRepos=$includePrivateRepos)"
 }
 
 
