@@ -2,7 +2,7 @@ package hedgehog.clients.github
 
 import scala.concurrent.{Future, Promise}
 import scala.concurrent.duration._
-import scala.collection.mutable
+import scala.collection.concurrent.TrieMap
 import play.api.Logger
 import play.api.cache.Cache
 import hedgehog.models.{AccountSettings, Repo}
@@ -20,7 +20,7 @@ class RepositoriesFetcher(client: Client) {
 
   private val CACHE_TIME = 5.minutes //TODO: from configs
 
-  private val fetching = mutable.Map[AccountSettings, mutable.ListBuffer[Promise[Repos]]]() //FIXME: thread unsafe
+  private val fetching = new FetchingRepos()
   private implicit val context = client.context
   private implicit val app = play.api.Play.current  //TODO: get from client
 
@@ -47,38 +47,34 @@ class RepositoriesFetcher(client: Client) {
   
   private def fetch(accountSettings: AccountSettings): Future[Repos] = {
       val promise = Promise[Repos]()
-      // other fetch runs in parallel
-      if (fetching contains accountSettings) {
-        Logger.debug(s"Fetching ever run for $accountSettings, prepend promise")
-        fetching(accountSettings) prepend promise
-
-      // first fetch
+    
+      if (!fetching.isFetchNeeded(accountSettings, promise)) {
+        Logger.debug(s"Fetching ever run for $accountSettings")
       } else {
         val key = getSettingsKey(accountSettings)
         Logger.debug(s"Fetch repos for $accountSettings")
-        fetching(accountSettings) = mutable.ListBuffer(promise)
-        val clientResult = client.getRepos(accountSettings)
+
         def sendResult(res: Repos) {
-          fetching(accountSettings).foreach(_.success(res))
-          fetching -= accountSettings
+          fetching.finishPromises(accountSettings, p => p.success(res))
         }
-        clientResult onFailure {
-          case e =>
+
+        client.getRepos(accountSettings) map {
+          case res =>
+            Cache.set(key, res, CACHE_TIME)
+            res
+        } recoverWith {
+          case _ =>
             Cache.getAs[Repos](key) match {
               case Some(repos) =>
                 Logger.warn(s"Unable to fetch repos for $accountSettings get old version from cache")
-                sendResult(repos)
+                Future.successful(repos)
               case None =>
                 Logger.error(s"Errors when fetch repos for $accountSettings, skipping")
                 //return empty seq on errors
-                sendResult(Seq[Repo]())
+                Future.successful(Seq[Repo]())
             }
-        }
-
-        clientResult onSuccess {
-          case res =>
-            Cache.set(key, res, CACHE_TIME)
-            sendResult(res)
+        } map {
+          case res => sendResult(res)
         }
       }
       promise.future
@@ -98,4 +94,32 @@ class RepositoriesFetcher(client: Client) {
 
 object RepositoriesFetcher {
   lazy val playAppInstance: RepositoriesFetcher = new RepositoriesFetcher(hedgehog.Config.playAppInstance.githubClient)
+}
+
+
+private class FetchingRepos() {
+  type ReposPromise = Promise[Seq[Repo]]
+
+  val nowFetched = TrieMap[AccountSettings, Seq[ReposPromise]]()
+
+  def isFetchNeeded(accountSettings: AccountSettings, promise: ReposPromise): Boolean = {
+    this.synchronized {
+      val promises = this.popCurrentPromises(accountSettings)
+      val needFetch = promises.length == 0
+      nowFetched(accountSettings) = promise +: promises
+      needFetch
+    }
+  }
+  
+  def finishPromises(accountSettings: AccountSettings, func: ReposPromise => Unit) {
+    popCurrentPromises(accountSettings).foreach(func)
+  }
+
+  private def popCurrentPromises(accountSettings: AccountSettings): Seq[ReposPromise] = {
+    this.synchronized {
+      val promises = nowFetched.getOrElse(accountSettings, Seq[ReposPromise]())
+      nowFetched.remove(accountSettings)
+      promises
+    }
+  }
 }

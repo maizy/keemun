@@ -3,6 +3,7 @@ package hedgehog.clients.github
 import scala.concurrent.{Future, Promise}
 import play.api.libs.ws.WS
 import play.api.libs.json.{JsSuccess, JsError}
+import play.api.Logger
 
 import hedgehog.models.{AccountSettings, Repo}
 
@@ -43,6 +44,7 @@ class Client(val config: Config, implicit val context: scala.concurrent.Executio
   }
 
   private def getPage(accountSettings: AccountSettings, page: Int, perPage: Int): Future[PageRes] = {
+    Logger.debug(s"Fetch repo page: page=$page, perPage=$perPage, account=${accountSettings.account.name}")
     val account = accountSettings.account
     val url = config.replaceBaseUrl(account.apiReposUrl)
     val httpClient = (
