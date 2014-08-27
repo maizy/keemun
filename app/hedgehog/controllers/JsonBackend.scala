@@ -12,6 +12,7 @@ trait JsonBackend extends Controller {
     //TODO: special cases for common hedgehog error
     case e: Exception => ServiceUnavailable(Json.obj(
       "error" -> true,
+      "success" -> false,
       "error_class" -> e.getClass.toString,
       "message" -> e.getMessage
     ))

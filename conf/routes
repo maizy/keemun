@@ -7,10 +7,9 @@ GET         /about                      controllers.Frontend.about
 GET         /status                     controllers.Status.index
 
 GET         /repositories               controllers.Repositories.list
+POST        /github/reload              controllers.Github.reload
 
 GET         /config                     controllers.Config.list
-# FIXME: tmp GET, use POST after done
-GET         /github/force-update        controllers.Github.forceUpdate
 
 POST        /language/set               controllers.Language.set
 

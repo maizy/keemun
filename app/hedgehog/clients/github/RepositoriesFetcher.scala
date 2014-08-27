@@ -80,10 +80,9 @@ class RepositoriesFetcher(client: Client) {
       promise.future
   }
 
-  def reload(accountSettings: Seq[AccountSettings]): Future[Seq[(AccountSettings, Boolean)]] = {
-    //val p = Promise[Seq[(AccountSettings, Boolean)]]
-    Future {
-      List()
+  def reload(accountSettings: Seq[AccountSettings]): Future[Boolean] = {
+    Future.sequence(accountSettings.map(fetch)) map {
+      case _ => true
     }
   }
 
