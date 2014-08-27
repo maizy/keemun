@@ -35,7 +35,7 @@ object GithubReades {
         owner,
         description = description,
         isPrivate = Some(isPrivate),
-        primaryLang = lang.map(l => ProgrammingLang(l.toLowerCase))
+        primaryLang = lang.map(l => ProgrammingLang(l))
       )
     }
   }

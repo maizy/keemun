@@ -21,15 +21,17 @@ case class Repo(
 object Repo {
 
   implicit val repoWrites = new Writes[Repo] {
+    import ProgrammingLangJson.programmingLangWrites
+
     def writes(r: Repo): JsValue = {
-      //FIXME: as documented
       Json.obj(
+        "id" -> r.fullName,
         "name" -> r.name,
-        //"owner" -> r.ownerName,
-        //"url" -> r.url,
         "full_name" -> r.fullName,
         "description" -> r.description,
-        "is_private" -> r.isPrivate
+        "is_private" -> r.isPrivate,
+        "repo_url" -> r.url,
+        "primary_lang" -> r.primaryLang
       )
     }
   }

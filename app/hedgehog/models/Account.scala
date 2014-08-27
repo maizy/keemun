@@ -28,7 +28,7 @@ trait Account {
     s"$baseWebUrl/${urlEncodePathSegment(this.name)}"
 
   def getRepoUrl(repo: Repo): String =
-    s"$webProfileUrl/${urlEncodePathSegment(repo.fullName)}"
+    s"$webProfileUrl/${urlEncodePathSegment(repo.name)}"
 
   def apiReposUrl: String
 

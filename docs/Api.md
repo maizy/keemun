@@ -17,7 +17,7 @@ may be changed later.
     * repo_name
     * owner_name
   * direction
-    * asc
+    * asc (default)
     * desc
 
 Without grouping:
@@ -100,7 +100,6 @@ _See [Scala Repository model](Models.md#github_repo)._
         // ...
     ],
     "repo_url": "https://github.com/user/repo"
-    "profile_url": "https://github.com/user/repo"
 }
 ```
 
@@ -113,7 +112,7 @@ _See [Scala Account model](Models.md#account)._
     "id": "user",
     "name": "user",
     "profile_url": "https://github.com/user",
-    "type": "org" // or "user"
+    "type": "org", // or "user"
     "avatar_url": "http://.../logo.png" // or null
 }
 ```

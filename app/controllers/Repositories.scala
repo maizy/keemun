@@ -1,7 +1,7 @@
 package controllers
 
 import play.api.mvc.{Action, Controller}
-import play.api.libs.json.Json
+import play.api.libs.json.{Json, JsNull}
 
 import hedgehog.clients.github.RepositoriesFetcher
 import hedgehog.controllers.JsonBackend
@@ -19,8 +19,14 @@ object Repositories extends Controller with JsonBackend {
     fetcher.getRepos(config.sources.accountsSettings) map {
       repos =>
         Ok(Json.obj(
-          //TODO: grouping, params ...
-          "repositories" -> repos
+          "repositories" -> repos,
+
+          //TODO: (iss #26) grouping, params ...
+          "params" -> Json.obj(
+            "sort" -> JsNull,
+            "direction" -> "asc",
+            "group" -> JsNull
+          )
         ))
     } recover commonJsonRecover
   }
