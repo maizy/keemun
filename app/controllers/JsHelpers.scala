@@ -14,7 +14,7 @@ object JsHelpers extends Controller {
     Ok(
       Routes.javascriptRouter("_routes")(
         Repositories.list,
-        Frontend.search,
+        Frontend.codeSearch,
         Frontend.about
       )
     ).as("text/javascript")

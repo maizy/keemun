@@ -1,4 +1,4 @@
-nav.Search = Поиск
+nav.Code_Search = Поиск по коду
 nav.About = О сервисе
 
 footer.Issues = Предложения и замечания

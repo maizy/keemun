@@ -2,7 +2,9 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET         /                           controllers.Frontend.search
+GET         /                           controllers.Frontend.redirectToCodeSearch
+GET         /search                     controllers.Frontend.redirectToCodeSearch
+GET         /search/code                controllers.Frontend.codeSearch
 GET         /about                      controllers.Frontend.about
 GET         /status                     controllers.Status.index
 
