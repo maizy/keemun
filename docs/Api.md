@@ -11,13 +11,13 @@ may be changed later.
 ## GET /repositories
 
   * group
-    * by_account
+    * by_primary_lang
     * by_owner
   * sort
     * repo_name
     * owner_name
   * direction
-    * asc
+    * asc (default)
     * desc
 
 Without grouping:
@@ -67,7 +67,7 @@ With grouping:
     "sources": [
         {
             "account": {
-                // short account object
+                // account object (without avatar & some other additional info)
             },
             "include_private_repos": true
         },
@@ -76,8 +76,6 @@ With grouping:
 }
 
 ```
-
-## Common objects
 
 ## Repo
 
@@ -102,35 +100,20 @@ _See [Scala Repository model](Models.md#github_repo)._
         // ...
     ],
     "repo_url": "https://github.com/user/repo"
-    "profile_url": "https://github.com/user/repo"
 }
 ```
 
 ## Account
 
-_See [Scala GitHubAccount model](Models.md#github_account)._
-
-short:
+_See [Scala Account model](Models.md#account)._
 
 ```javascript
 {
     "id": "user",
     "name": "user",
     "profile_url": "https://github.com/user",
-    "type": "corp" // or "user"
-}
-```
-
-
-full:
-
-```javascript
-{
-    "id": "maizy",
-    "name": "maizy",
-    "profile_url": "https://github.com/maizy",
-    "avatar_url": "http://.../logo.png",
-    "type": "corp" // or "user"
+    "type": "org", // or "user"
+    "avatar_url": "http://.../logo.png" // or null
 }
 ```
 

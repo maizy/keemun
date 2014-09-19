@@ -1,16 +1,61 @@
-@(githubConfig: hedgehog.clients.github.Config)(implicit c: hedgehog.views.ViewContext)
+@(config: hedgehog.Config, playVersion: String, scalaVersion: String, fetcherStats: Map[String, Int])(implicit c: hedgehog.views.ViewContext)
 
 @templates.main(nav = "status") {
     <h1>@c.Messages("Status")</h1>
 
-    <h3>Some configs:</h3>
+    <h3>@c.Messages("Some_configs")</h3>
 
     <table class="table">
         <tbody>
             <tr>
                 <td>github base api url</td>
-                <td>@githubConfig.apiBaseUrl</td>
+                <td>@config.apiBaseUrl</td>
             </tr>
+
+            <tr>
+                <td>available langs</td>
+                <td>@c.availableLanguages.map(_.code).mkString(", ")</td>
+            </tr>
+
+            <tr>
+                <td>current lang</td>
+                <td>@c.lang.code</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <h3>@c.Messages("Versions")</h3>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>scala</td>
+                <td>@scalaVersion</td>
+            </tr>
+
+            <tr>
+                <td>play</td>
+                <td>@playVersion</td>
+            </tr>
+
+            <tr>
+                <td>hedgehog</td>
+                <td>@c.version</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>@c.Messages("Fetcher_stats")</h3>
+
+    <table class="table">
+        <tbody>
+            @for((param, value) <- fetcherStats) {
+              <tr>
+                <td>@param</td>
+                <td>@value</td>
+            </tr>
+            }
         </tbody>
     </table>
 }

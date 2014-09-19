@@ -1,44 +1,37 @@
 package hedgehog.models
 
 import play.api.libs.json._
-import play.api.Play.current
-import scala.collection.JavaConverters._
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2013-2014
  * See LICENSE.txt for details.
  */
-class Repo (val name: String, val ownerName: String) {
-  def url = s"$GITHUB_BASE_URL/$fullName"
-  def fullName = s"$ownerName/$name"
-
-  //TODO
-  def description: Option[String] = None
-  def isPrivate: Option[Boolean] = None
+case class Repo(
+    name: String,
+    owner: Account,
+    description: Option[String] = None,
+    isPrivate: Option[Boolean] = None,
+    primaryLang: Option[ProgrammingLang] = None,
+    langsStat: Option[Seq[ProgrammingLangStat]] = None) {
+  def fullName = s"${owner.name}/$name"
+  lazy val langsStatIndex = langsStat.map(seq => seq.map{stat => (stat.lang.code, stat)}.toMap)
+  def url: String = owner.getRepoUrl(this)
 }
 
 
 object Repo {
-  def getCurrentRepos: Seq[Repo] =
-    current.configuration
-      .getStringList("sources.repos")
-      .map(_.asScala map Repo.fromFullName)
-      .getOrElse(List())
 
-  def fromFullName(fullName: String): Repo =
-    fullName.split("/").toList match {
-      case ownerName :: name :: Nil => new Repo(name, ownerName)
-      case _ => throw new ConfigError("Bad repo name format for \""+ fullName +"\"")
-    }
+  implicit val repoWrites = new Writes[Repo] {
+    import ProgrammingLangJson.programmingLangWrites
 
-  implicit val writer = new Writes[Repo] {
-    def writes(r: Repo) : JsValue = {
+    def writes(r: Repo): JsValue = {
       Json.obj(
+        "id" -> r.fullName,
         "name" -> r.name,
-        "owner" -> r.ownerName,
-        "url" -> r.url,
         "full_name" -> r.fullName,
         "description" -> r.description,
-        "is_private" -> r.isPrivate
+        "is_private" -> r.isPrivate,
+        "repo_url" -> r.url,
+        "primary_lang" -> r.primaryLang
       )
     }
   }

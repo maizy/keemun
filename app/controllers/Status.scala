@@ -1,16 +1,26 @@
 package controllers
 
 import play.api.mvc.{Action, Controller}
-import play.api.Play.current
+import play.core.PlayVersion
 import hedgehog.controllers.WithViewContext
-import hedgehog.clients.github
+import hedgehog.Config.playAppInstance
+import hedgehog.clients.github.RepositoriesFetcher
 
 /**
- * Copyright (c) Nikita Kovaliov, maizy.ru, 2013
+ * Copyright (c) Nikita Kovaliov, maizy.ru, 2013-2014
  * See LICENSE.txt for details.
  */
 object Status extends Controller with WithViewContext {
   def index = Action { implicit request =>
-    Ok(views.html.status(github.Config.fromPlayApp(current)))
+    val fetcherStat = Map(
+      "hits" -> RepositoriesFetcher.playAppInstance.hits,
+      "misses" -> RepositoriesFetcher.playAppInstance.misses
+    )
+    Ok(views.html.status(
+      playAppInstance,
+      PlayVersion.current,
+      PlayVersion.scalaVersion,
+      fetcherStat
+    ))
   }
 }

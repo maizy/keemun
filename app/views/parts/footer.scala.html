@@ -10,13 +10,13 @@
             <li>·</li>
             <li><a href="@routes.Frontend.about">@c.Messages("footer.About")</a></li>
             <li>·</li>
-            <li><a href="@c.hedgehogRepoUrl/issues?state=open">@c.Messages("footer.Issues")</a></li>
+            <li><a href="@c.projectRepoUrl/issues?state=open">@c.Messages("footer.Issues")</a></li>
             <li>·</li>
             <li>
                 <span class="hedgehog_language-picker b-language-picker-footer">
                     <div class="dropup b-language-picker-footer_wrapper">
                         <a class="dropdown-toggle b-language-picker-footer_link" data-toggle="dropdown" href="#">
-                            @c.Messages("footer.ChooseLanguage")
+                            @c.Messages("footer.Choose_language")
                         </a>
                         <ul class="dropdown-menu hedgehog_language-picker--langs">
                             @for(l <- c.availableLanguages) {

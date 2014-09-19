@@ -14,10 +14,11 @@
             "query": {
                 "required": {
                     "page": "1",
-                    "per_page": "100"
+                    "per_page": "100",
+                    "type": ["open", "private"]
                 }
             },
-
+            "delay": 1.5,
             "response_file": "orgs/hhru/repos/page1.json",
             "headers_file": "orgs/hhru/repos/page1.headers"
         },
@@ -27,7 +28,8 @@
             "query": {
                 "required": {
                     "page": "1",
-                    "per_page": "100"
+                    "per_page": "100",
+                    "type": ["open", "private"]
                 }
             },
 
@@ -40,23 +42,11 @@
             "query": {
                 "required": {
                     "page": "2",
-                    "per_page": "100"
+                    "per_page": "100",
+                    "type": ["open", "private"]
                 }
             },
-
-            "response_file": "orgs/hhru/repos/page2.json",
-            "headers_file": "orgs/hhru/repos/page2.headers"
-        },
-
-        {
-            "path": "/orgs/hhru/repos",
-            "query": {
-                "required": {
-                    "page": "2",
-                    "per_page": "100"
-                }
-            },
-
+            "delay": 0.5,
             "response_file": "orgs/hhru/repos/page2.json",
             "headers_file": "orgs/hhru/repos/page2.headers"
         },
@@ -66,7 +56,8 @@
             "query": {
                 "required": {
                     "page": "2",
-                    "per_page": "100"
+                    "per_page": "100",
+                    "type": ["open", "private"]
                 }
             },
 
@@ -80,7 +71,8 @@
             "query": {
                 "required": {
                     "page": "1",
-                    "per_page": "100"
+                    "per_page": "100",
+                    "type": "open"
                 }
             },
 
