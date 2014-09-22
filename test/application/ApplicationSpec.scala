@@ -18,14 +18,12 @@ class ApplicationSpec extends Specification {
         route(FakeRequest(GET, "/boum")) must beNone        
       }
     }
-    
-    "render the index page" in {
-      running(FakeApplication()) {
-        val home = route(FakeRequest(GET, "/")).get
-        
-        status(home) must equalTo(OK)
-        contentType(home) must beSome.which(_ == "text/html")
-        contentAsString(home) must contain ("hedGeHog")
+    for (url <- List("/", "/search")) {
+      s"send redirect for $url" in {
+        running(FakeApplication()) {
+          val response = route(FakeRequest(GET, url)).get
+          redirectLocation(response) must beEqualTo(Some("/search/code"))
+        }
       }
     }
   }

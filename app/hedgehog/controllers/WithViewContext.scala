@@ -9,6 +9,6 @@ import hedgehog.views.ViewContext
  */
 trait WithViewContext extends Controller {
   implicit def viewContext (implicit request: Request[AnyContent]) = {
-    new ViewContext(request, lang)
+    new ViewContext(request, request2lang)
   }
 }

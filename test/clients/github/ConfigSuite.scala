@@ -4,6 +4,9 @@ import org.scalatest._
 
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
+import play.api.Configuration
+import play.api.libs.ws.{DefaultWSConfigParser, WSClient}
+import play.api.libs.ws.ning.{NingAsyncHttpClientConfigBuilder, NingWSClient}
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014
@@ -15,8 +18,14 @@ class ConfigSuite extends FunSuite with Matchers {
   import hedgehog.clients.github.Config
 
   trait SampleConfigs {
-    val config = new Config(apiBaseUrl = "http://base", accessToken = None)
-    val configWithPort = new Config(apiBaseUrl = "http://base:8880", accessToken = None)
+    private val classLoader = Thread.currentThread().getContextClassLoader
+    val appConfig = Configuration.from(Map())
+    private val parser = new DefaultWSConfigParser(appConfig, classLoader)
+    val httpClientConfig = parser.parse()
+    private val builder = new NingAsyncHttpClientConfigBuilder(httpClientConfig)
+    val sampleHttpClient: WSClient = new NingWSClient(builder.build())
+    val config = new Config(apiBaseUrl = "http://base", accessToken = None, sampleHttpClient)
+    val configWithPort = new Config(apiBaseUrl = "http://base:8880", accessToken = None, sampleHttpClient)
   }
 
   test("apiBaseUrl property") {

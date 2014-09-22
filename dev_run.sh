@@ -1,6 +1,6 @@
 #!/bin/bash
 PORT=9010
-BIN=`which play`
+BIN=`which activator`
 SCRIPT_PATH=$(cd ${0%/*} && echo $PWD/${0##*/})
 ROOT=`dirname "${SCRIPT_PATH}"`
 
