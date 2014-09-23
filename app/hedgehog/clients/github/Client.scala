@@ -48,7 +48,7 @@ class Client(val config: Config, implicit val context: scala.concurrent.Executio
     val account = accountSettings.account
     val url = config.replaceBaseUrl(account.apiReposUrl)
     val httpClient = (
-        WS.url(url).withQueryString(
+        config.httpClient.url(url).withQueryString(
           "per_page" -> perPage.toString,
           "page" -> page.toString,
           "type" -> "open"

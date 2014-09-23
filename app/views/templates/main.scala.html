@@ -8,8 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
 
-        <link href="@routes.Assets.at("bootstrap/css/bootstrap.min.css")" rel="stylesheet" media="screen">
-        <link href="@routes.Assets.at("bootstrap/css/bootstrap-theme.min.css")" rel="stylesheet" media="screen">
+        <link href="@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))" rel="stylesheet" media="screen">
+        <link href="@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap-theme.min.css"))" rel="stylesheet" media="screen">
         <link href="@routes.Assets.at("stylesheets/main.css")" rel="stylesheet" media="screen">
         @styles
     </head>
@@ -31,9 +31,9 @@
             window['_routes'] = undefined;
         // ]]>
         </script>
-        <script src="@routes.Assets.at("javascripts/libs/jquery.min.js")"></script>
-        <script src="@routes.Assets.at("javascripts/libs/lodash.min.js")"></script>
-        <script src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")"></script>
+        <script src="@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))"></script>
+        <script src="@routes.WebJarAssets.at(WebJarAssets.locate("lodash.min.js"))"></script>
+        <script src="@routes.WebJarAssets.at(WebJarAssets.locate("js/bootstrap.min.js"))"></script>
         <script src="@routes.Assets.at("javascripts/hedgehog/language-picker.js")"></script>
         @scripts
         <script type="text/javascript">

@@ -1,13 +1,14 @@
 package hedgehog.clients.github
 
 import java.util.regex.Pattern
+import play.api.libs.ws.WSClient
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014
  * See LICENSE.txt for details.
  */
 
-class Config(val apiBaseUrl: String, val accessToken: Option[String]) {
+class Config(val apiBaseUrl: String, val accessToken: Option[String], val httpClient: WSClient) {
 
   def replaceBaseUrl(url: String): String = {
     var processedUrl = url
