@@ -1,9 +1,9 @@
-if (typeof window.hedgehog === 'undefined') { window.hedgehog = {}; }
-if (typeof window.hedgehog.SearchForm === 'undefined') {
-window.hedgehog.SearchForm = (function() {
+if (typeof window.keemun === 'undefined') { window.keemun = {}; }
+if (typeof window.keemun.SearchForm === 'undefined') {
+window.keemun.SearchForm = (function() {
     'use strict';
 
-    var COMPONENT = 'hedgehog_search_form';
+    var COMPONENT = 'keemun_search_form';
 
     var s = function SearchForm($wrapper, debug) {
         this._debug = _.isUndefined(debug) ? false : !!debug;
@@ -12,7 +12,7 @@ window.hedgehog.SearchForm = (function() {
         this._repsKey = undefined;
 
         if (_.isUndefined($wrapper) || $wrapper.length === 0) {
-            hedgehog.utils.error('Search form wrapper not found');
+            keemun.utils.error('Search form wrapper not found');
         } else {
             $(this.init.bind(this));
         }
@@ -46,7 +46,7 @@ window.hedgehog.SearchForm = (function() {
 
     s.prototype.init = function () {
         if (this._debug) {
-            hedgehog.utils.debug("Start in debug mode");
+            keemun.utils.debug("Start in debug mode");
             this.getRealForm().show();
         }
         this.getForm().find(':submit').prop('disabled', true);
@@ -55,7 +55,7 @@ window.hedgehog.SearchForm = (function() {
     };
 
     s.prototype._loadReps = function () {
-        var r = hedgehog.routes.controllers.Repositories.list();
+        var r = keemun.routes.controllers.Repositories.list();
         $.ajax({
             url: r.url,
             method: r.method,

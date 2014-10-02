@@ -15,7 +15,7 @@ import play.api.libs.ws.ning.{NingAsyncHttpClientConfigBuilder, NingWSClient}
 @RunWith(classOf[JUnitRunner])
 class ConfigSuite extends FunSuite with Matchers {
 
-  import hedgehog.clients.github.Config
+  import keemun.clients.github.Config
 
   trait SampleConfigs {
     private val classLoader = Thread.currentThread().getContextClassLoader

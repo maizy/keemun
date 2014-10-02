@@ -1,7 +1,7 @@
-package hedgehog.controllers
+package keemun.controllers
 
 import play.api.mvc.{Controller, AnyContent, Request}
-import hedgehog.views.ViewContext
+import keemun.views.ViewContext
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2013

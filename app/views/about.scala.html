@@ -1,10 +1,10 @@
-@()(implicit c: hedgehog.views.ViewContext)
+@()(implicit c: keemun.views.ViewContext)
 
 @templates.main(nav = "about") {
     <div>
         <h1>@c.Messages("About")</h1>
         <p class="lead">
-            hedGeHog v&thinsp;@c.version<br/>
+            keemun v&thinsp;@c.version<br/>
             @c.Messages("Author"): Nikita Kovaliov, @c.copyrightYears<br/>
             <a href="@c.projectRepoUrl">@c.projectRepoUrl</a>
         </p>

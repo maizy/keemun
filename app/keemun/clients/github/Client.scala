@@ -1,11 +1,11 @@
-package hedgehog.clients.github
+package keemun.clients.github
 
 import scala.concurrent.{Future, Promise}
 import play.api.libs.ws.WS
 import play.api.libs.json.{JsSuccess, JsError}
 import play.api.Logger
 
-import hedgehog.models.{AccountSettings, Repo}
+import keemun.models.{AccountSettings, Repo}
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014

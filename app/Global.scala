@@ -6,6 +6,6 @@ import play.api._
  */
 object Global extends GlobalSettings {
   override def configuration = Configuration.from(
-    Map("ws" -> Map("useragent" -> s"hedgehog/${hedgehog.Version.SYMBOLIC}"))
+    Map("ws" -> Map("useragent" -> s"keemun/${keemun.Version.SYMBOLIC}"))
   )
 }

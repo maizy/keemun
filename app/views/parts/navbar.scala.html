@@ -1,5 +1,5 @@
 @* TODO: use some helper *@
-@(current: String)(implicit c: hedgehog.views.ViewContext)
+@(current: String)(implicit c: keemun.views.ViewContext)
 
 @isActive(item: String) = {
     @if(item == current) {
@@ -12,5 +12,5 @@
     <ul class="nav nav-pills pull-right">
         <li @isActive("search")><a href="@routes.Frontend.codeSearch">@c.Messages("nav.Code_Search")</a></li>
     </ul>
-    <h3 class="text-muted">hed<span class="gh">G</span>e<span class="gh">H</span>og</h3>
+    <h3 class="text-muted">keemun</h3>
 </div>

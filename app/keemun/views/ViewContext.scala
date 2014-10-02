@@ -1,10 +1,10 @@
-package hedgehog.views
+package keemun.views
 
 import play.api.mvc.{AnyContent, Request}
 import play.api.i18n
 import play.api.Play.current
 
-import hedgehog.Config.playAppInstance
+import keemun.Config.playAppInstance
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2013

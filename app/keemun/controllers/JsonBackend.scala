@@ -1,4 +1,4 @@
-package hedgehog.controllers
+package keemun.controllers
 
 import play.api.mvc.{Result, Controller}
 import play.api.libs.json.Json
@@ -9,7 +9,7 @@ import play.api.libs.json.Json
  */
 trait JsonBackend extends Controller {
   val commonJsonRecover: PartialFunction[Throwable, Result] = {
-    //TODO: special cases for common hedgehog error
+    //TODO: special cases for common keemun error
     case e: Exception => ServiceUnavailable(Json.obj(
       "error" -> true,
       "success" -> false,

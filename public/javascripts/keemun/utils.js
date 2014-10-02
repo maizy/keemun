@@ -1,6 +1,6 @@
-if (typeof window.hedgehog === 'undefined') { window.hedgehog = {}; }
-if (typeof window.hedgehog.utils === 'undefined') {
-window.hedgehog.utils = (function() {
+if (typeof window.keemun === 'undefined') { window.keemun = {}; }
+if (typeof window.keemun.utils === 'undefined') {
+window.keemun.utils = (function() {
     'use strict';
 
     var exp = {};

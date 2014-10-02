@@ -1,11 +1,11 @@
-package hedgehog.clients.github
+package keemun.clients.github
 
 import scala.concurrent.{Future, Promise}
 import scala.concurrent.duration._
 import scala.collection.concurrent.TrieMap
 import play.api.Logger
 import play.api.cache.Cache
-import hedgehog.models.{AccountSettings, Repo}
+import keemun.models.{AccountSettings, Repo}
 
 
 /**
@@ -92,7 +92,7 @@ class RepositoriesFetcher(client: Client) {
 
 
 object RepositoriesFetcher {
-  lazy val playAppInstance: RepositoriesFetcher = new RepositoriesFetcher(hedgehog.Config.playAppInstance.githubClient)
+  lazy val playAppInstance: RepositoriesFetcher = new RepositoriesFetcher(keemun.Config.playAppInstance.githubClient)
 }
 
 

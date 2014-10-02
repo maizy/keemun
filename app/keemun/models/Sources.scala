@@ -1,4 +1,4 @@
-package hedgehog.models
+package keemun.models
 
 import scala.collection.JavaConversions._
 

@@ -8,7 +8,7 @@ TYPE="${1}"
 CONFIG="${2}"
 cd "${ROOT}"
 
-echo -ne "\033]2;hedgehog play app\007"
+echo -ne "\033]2;keemun play app\007"
 echo -e "Run app in ${ROOT}, port ${PORT}, play=${BIN}\n"
 if [ -z "${CONFIG}" ]; then
     if [ "${TYPE}" == "real" ]; then

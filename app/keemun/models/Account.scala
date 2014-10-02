@@ -1,7 +1,7 @@
-package hedgehog.models
+package keemun.models
 
 import play.api.libs.json._
-import hedgehog.UrlUtils.urlEncodePathSegment
+import keemun.UrlUtils.urlEncodePathSegment
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014

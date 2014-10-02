@@ -1,4 +1,4 @@
-package hedgehog.clients.github
+package keemun.clients.github
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014

@@ -2,9 +2,9 @@ package controllers
 
 import play.api.mvc.{Action, Controller}
 import play.core.PlayVersion
-import hedgehog.controllers.WithViewContext
-import hedgehog.Config.playAppInstance
-import hedgehog.clients.github.RepositoriesFetcher
+import keemun.controllers.WithViewContext
+import keemun.Config.playAppInstance
+import keemun.clients.github.RepositoriesFetcher
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2013-2014

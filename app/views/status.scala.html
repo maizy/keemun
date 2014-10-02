@@ -1,4 +1,4 @@
-@(config: hedgehog.Config, playVersion: String, scalaVersion: String, fetcherStats: Map[String, Int])(implicit c: hedgehog.views.ViewContext)
+@(config: keemun.Config, playVersion: String, scalaVersion: String, fetcherStats: Map[String, Int])(implicit c: keemun.views.ViewContext)
 
 @templates.main(nav = "status") {
     <h1>@c.Messages("Status")</h1>
@@ -40,7 +40,7 @@
             </tr>
 
             <tr>
-                <td>hedgehog</td>
+                <td>keemun</td>
                 <td>@c.version</td>
             </tr>
         </tbody>

@@ -12,8 +12,8 @@ import org.scalatest.junit.JUnitRunner
 @RunWith(classOf[JUnitRunner])
 class PackageSuite extends FunSuite with Matchers {
 
-  import hedgehog.clients.github
-  import hedgehog.clients.github.HeaderLink
+  import keemun.clients.github
+  import keemun.clients.github.HeaderLink
 
   test("parseLinkHeader") {
     val header =

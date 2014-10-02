@@ -1,5 +1,5 @@
 @* TODO: use some helper *@
-@()(implicit c: hedgehog.views.ViewContext)
+@()(implicit c: keemun.views.ViewContext)
 
 <div class="footer">
     <div class="container">
@@ -13,20 +13,20 @@
             <li><a href="@c.projectRepoUrl/issues?state=open">@c.Messages("footer.Issues")</a></li>
             <li>·</li>
             <li>
-                <span class="hedgehog_language-picker b-language-picker-footer">
+                <span class="keemun_language-picker b-language-picker-footer">
                     <div class="dropup b-language-picker-footer_wrapper">
                         <a class="dropdown-toggle b-language-picker-footer_link" data-toggle="dropdown" href="#">
                             @c.Messages("footer.Choose_language")
                         </a>
-                        <ul class="dropdown-menu hedgehog_language-picker--langs">
+                        <ul class="dropdown-menu keemun_language-picker--langs">
                             @for(l <- c.availableLanguages) {
                                 <li>
                                 @if(l == c.lang) {
-                                    <b data-lang-code="@l.code" class="hedgehog_language-picker--lang">
+                                    <b data-lang-code="@l.code" class="keemun_language-picker--lang">
                                         @l.code.toUpperCase
                                     </b>
                                 } else {
-                                    <a href="#" data-lang-code="@l.code" class="hedgehog_language-picker--lang">
+                                    <a href="#" data-lang-code="@l.code" class="keemun_language-picker--lang">
                                         @l.code.toUpperCase
                                     </a>
                                 }
@@ -34,7 +34,7 @@
                             }
                         </ul>
                     </div>
-                    <form class="hedgehog_language-picker--form b-language-picker-footer_form"
+                    <form class="keemun_language-picker--form b-language-picker-footer_form"
                           action="@routes.Language.set" method="post">
                         <input type="text" name="lang" value=""/>
                     </form>

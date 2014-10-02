@@ -1,6 +1,6 @@
 # API
 
-Those backends used internaly by hedgehog pages. But you can call them directly if you want.
+Those backends used internaly by keemun pages. But you can call them directly if you want.
 Methods arguments & response params will be compatible from version to version.
 
 ## Common fields

@@ -1,9 +1,9 @@
-package hedgehog.clients.github
+package keemun.clients.github
 
 import play.api.libs.functional.syntax._
 import play.api.libs.json.{Reads, __}
 
-import hedgehog.models.{GithubOrg, Account, GithubUser, Repo, ProgrammingLang}
+import keemun.models.{GithubOrg, Account, GithubUser, Repo, ProgrammingLang}
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014
  * See LICENSE.txt for details.

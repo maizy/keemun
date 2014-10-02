@@ -5,7 +5,7 @@ import org.scalatest._
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
-import hedgehog.models.{GithubUser, AccountSettings}
+import keemun.models.{GithubUser, AccountSettings}
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014

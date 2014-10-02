@@ -1,9 +1,9 @@
-package hedgehog.clients
+package keemun.clients
 
 import scala.util.matching.Regex
 import com.netaporter.uri.Uri
 
-import hedgehog.StringUtils.StringImplicitConverters
+import keemun.StringUtils.StringImplicitConverters
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014

@@ -1,9 +1,9 @@
 @* TODO: use some helper for navigation *@
-@(nav: String = "search", scripts: Html = Html(""), styles: Html = Html(""))(content: Html)(implicit c: hedgehog.views.ViewContext)
+@(nav: String = "search", scripts: Html = Html(""), styles: Html = Html(""))(content: Html)(implicit c: keemun.views.ViewContext)
 <!DOCTYPE html>
 <html lang="@c.lang.code">
     <head>
-        <title>hedGeHog</title>
+        <title>keemun</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
@@ -26,20 +26,20 @@
         <script src="@routes.JsHelpers.jsRoutes"></script>
         <script type="text/javascript">
         //<![CDATA[
-            if (typeof window.hedgehog === 'undefined') { window.hedgehog = {}; }
-            hedgehog.routes = window._routes;
+            if (typeof window.keemun === 'undefined') { window.keemun = {}; }
+            keemun.routes = window._routes;
             window['_routes'] = undefined;
         // ]]>
         </script>
         <script src="@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))"></script>
         <script src="@routes.WebJarAssets.at(WebJarAssets.locate("lodash.min.js"))"></script>
         <script src="@routes.WebJarAssets.at(WebJarAssets.locate("js/bootstrap.min.js"))"></script>
-        <script src="@routes.Assets.at("javascripts/hedgehog/language-picker.js")"></script>
+        <script src="@routes.Assets.at("javascripts/keemun/language-picker.js")"></script>
         @scripts
         <script type="text/javascript">
         //<![CDATA[
         $(function () {
-            new hedgehog.LanguagePicker($('.hedgehog_language-picker'));
+            new keemun.LanguagePicker($('.keemun_language-picker'));
         });
         // ]]>
         </script>

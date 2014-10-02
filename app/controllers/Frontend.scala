@@ -1,7 +1,7 @@
 package controllers
 
 import play.api.mvc.{Action, Controller}
-import hedgehog.controllers.WithViewContext
+import keemun.controllers.WithViewContext
 
 
 object Frontend extends Controller with WithViewContext {

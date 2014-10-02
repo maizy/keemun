@@ -4,7 +4,7 @@ val app = new play.core.StaticApplication(new java.io.File("."))
 import play.api.Play.current
 val conf = current.configuration
 
-import hedgehog.models._
+import keemun.models._
 val userAccount = GithubUser("user", Some("http://example.com/u.png"))
 val orgAccount = GithubOrg("org", Some("http://example.com/o.png"))
 

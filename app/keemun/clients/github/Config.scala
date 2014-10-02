@@ -1,4 +1,4 @@
-package hedgehog.clients.github
+package keemun.clients.github
 
 import java.util.regex.Pattern
 import play.api.libs.ws.WSClient

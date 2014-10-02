@@ -2,8 +2,8 @@ package controllers
 
 import play.api.mvc.{Action, Controller}
 import play.api.libs.json.Json
-import hedgehog.clients.github.RepositoriesFetcher
-import hedgehog.controllers.JsonBackend
+import keemun.clients.github.RepositoriesFetcher
+import keemun.controllers.JsonBackend
 
 
 /**
@@ -14,7 +14,7 @@ object Github extends Controller with JsonBackend {
 
   def reload = Action.async {
     val fetcher = RepositoriesFetcher.playAppInstance
-    val config = hedgehog.Config.playAppInstance
+    val config = keemun.Config.playAppInstance
     import play.api.libs.concurrent.Execution.Implicits._
 
     fetcher.reload(config.sources.accountsSettings) map {

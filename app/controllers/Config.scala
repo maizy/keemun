@@ -11,9 +11,9 @@ import play.api.libs.json.Json
 object Config extends Controller {
 
   def list = Action { implicit request =>
-    import hedgehog.models.AccountSettings.accountSettingWrites
+    import keemun.models.AccountSettings.accountSettingWrites
     Ok(Json.obj(
-        "sources" -> hedgehog.Config.playAppInstance.sources.accountsSettings
+        "sources" -> keemun.Config.playAppInstance.sources.accountsSettings
       ))
   }
 
