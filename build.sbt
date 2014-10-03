@@ -1,3 +1,6 @@
+import com.typesafe.sbt.SbtNativePackager._
+import NativePackagerKeys._
+
 name := "keemun"
 
 version := "0.0.1-SNAPSHOT"
@@ -16,5 +19,11 @@ libraryDependencies ++= Seq(
   "org.webjars" % "jquery" % "2.1.1",
   "org.webjars" % "lodash" % "2.4.1-6"
 )
+
+maintainer in Linux := "Nikita Kovaliov <nikita@maizy.ru>"
+
+packageSummary in Linux := "github search tool"
+
+packageDescription := "github search tool"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
