@@ -20,9 +20,11 @@ libraryDependencies ++= Seq(
   "org.webjars" % "lodash" % "2.4.1-6"
 )
 
-maintainer in Linux := "Nikita Kovaliov <nikita@maizy.ru>"
+maintainer := "Nikita Kovaliov <nikita@maizy.ru>"
 
-packageSummary in Linux := "github search tool"
+packageSummary := "github search tool"
+
+linuxEtcDefaultTemplate := (baseDirectory.value / "debian" / "etc-default").asURL
 
 packageDescription := "github search tool"
 
