@@ -1,10 +1,11 @@
 # Build .deb
 
-## Prerequirements
+## Build requirements
 
 * keemun checkout (via `git clone ...` or [tarball](https://github.com/maizy/zaglushka/archive/master.tar.gz))
 * sbt([deb package available](http://www.scala-sbt.org/0.13/tutorial/Installing-sbt-on-Linux.html))
 * deb packages `dpkg`, `fakeroot`
+* jdk 7 (openjdk or oracle-jdk)
 
 ## How to
 

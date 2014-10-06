@@ -26,6 +26,8 @@ packageSummary := "github search tool"
 
 linuxEtcDefaultTemplate := (baseDirectory.value / "debian" / "etc-default").asURL
 
+debianPackageDependencies in Debian ++= Seq("oracle-java7-jre|openjdk-7-jre")
+
 packageDescription := "github search tool"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
