@@ -1,6 +1,12 @@
+import com.typesafe.sbt.SbtNativePackager._
+import NativePackagerKeys._
+import com.typesafe.sbt.SbtGit._
+
 name := "keemun"
 
-version := "0.0.1-SNAPSHOT"
+versionWithGit
+
+git.baseVersion := "0.0.1"
 
 scalaVersion := "2.11.1"
 
@@ -16,5 +22,15 @@ libraryDependencies ++= Seq(
   "org.webjars" % "jquery" % "2.1.1",
   "org.webjars" % "lodash" % "2.4.1-6"
 )
+
+maintainer := "Nikita Kovaliov <nikita@maizy.ru>"
+
+packageSummary := "github search tool"
+
+linuxEtcDefaultTemplate := (baseDirectory.value / "debian" / "etc-default").asURL
+
+debianPackageDependencies in Debian ++= Seq("oracle-java7-jre|openjdk-7-jre")
+
+packageDescription := scala.io.Source.fromFile(baseDirectory.value / "README.md").getLines().mkString
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)

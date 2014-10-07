@@ -12,7 +12,7 @@ echo -ne "\033]2;keemun play app\007"
 echo -e "Run app in ${ROOT}, port ${PORT}, play=${BIN}\n"
 if [ -z "${CONFIG}" ]; then
     if [ "${TYPE}" == "real" ]; then
-        echo "With real data (application.conf)"
+        echo "With real data (real-data.conf)"
         "${BIN}" \
             "~run ${PORT}"
     else

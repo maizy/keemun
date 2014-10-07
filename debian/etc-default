@@ -1,0 +1,33 @@
+# ------------------------------------------------
+# author: ${{author}}
+# ${{descr}}
+#
+# startup script name: ${{exec}}
+# app directory: ${{chdir}}
+# daemon user: ${{daemon_user}}
+# -------------------------------------------------
+
+# keemun won't start without this setting
+-Dpidfile.path=/var/run/${{app_name}}/play.pid
+
+# Setting -Xmx and -Xms in Megabyte
+# -mem 1024
+
+# Setting -X directly (-J is stripped)
+# -J-X
+# -J-Xmx1024
+
+# Add additional jvm parameters
+# -Dkey=val
+
+# Turn on JVM debugging, open at the given port
+# -jvm-debug <port>
+
+# Don't run the java version check
+# -no-version-check
+
+# enabling debug and sending -d as app argument
+# the '--' prevents app-parameter swalloing when
+# using a reserved parameter.
+# See https://github.com/sbt/sbt-native-packager/pull/184
+# -d -- -d
