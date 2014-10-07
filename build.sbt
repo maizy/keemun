@@ -1,9 +1,12 @@
 import com.typesafe.sbt.SbtNativePackager._
 import NativePackagerKeys._
+import com.typesafe.sbt.SbtGit._
 
 name := "keemun"
 
-version := "0.0.1-SNAPSHOT"
+versionWithGit
+
+git.baseVersion := "0.0.1"
 
 scalaVersion := "2.11.1"
 
@@ -28,6 +31,6 @@ linuxEtcDefaultTemplate := (baseDirectory.value / "debian" / "etc-default").asUR
 
 debianPackageDependencies in Debian ++= Seq("oracle-java7-jre|openjdk-7-jre")
 
-packageDescription := "github search tool"
+packageDescription := scala.io.Source.fromFile(baseDirectory.value / "README.md").getLines().mkString
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)

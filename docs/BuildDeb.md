@@ -12,10 +12,13 @@
 ```bash
 # checkout keemun
 cd keemun/
-./build_dev.sh
-dpkg -i target/keemun_X.Y.Z-SNAPSHOT_all.deb
+./build_deb.sh
+ls target/keemun_*.deb
+dpkg -i target/keemun_X.Y.Z-hash.deb
 ```
-where `X.Y.Z` - current project version
+where `X.Y.Z` - current project version, `hash` - current git commit hash.
+
+For building release version do: `./build_deb.sh 0.1`.
 
 ## Supported OS
 
