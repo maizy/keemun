@@ -9,6 +9,7 @@ GET         /about                      controllers.Frontend.about
 GET         /status                     controllers.Status.index
 
 GET         /repositories               controllers.Repositories.list
+GET         /statistics                 controllers.Statistics.statistics
 POST        /github/reload              controllers.Github.reload
 
 GET         /config                     controllers.Config.list

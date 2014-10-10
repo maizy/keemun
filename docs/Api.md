@@ -77,6 +77,21 @@ With grouping:
 
 ```
 
+## GET /statistics
+
+```json
+{
+    "repositories": {
+        "total": 42,
+    },
+    "sources": {
+        "total": 12,
+        "user": 10,
+        "org": 2
+    }
+}
+```
+
 ## Repo
 
 _See [Scala Repository model](Models.md#github_repo)._
