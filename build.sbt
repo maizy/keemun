@@ -11,11 +11,16 @@ git.baseVersion := "0.0.1"
 scalaVersion := "2.11.1"
 
 libraryDependencies ++= Seq(
-  cache,
-  "org.scalatest" % "scalatest_2.11" % "2.2.1" % "test",
+  //scala libs
   "com.github.nscala-time" %% "nscala-time" % "1.4.0",
   "com.netaporter" %% "scala-uri" % "0.4.3",
+  "org.scalatest" % "scalatest_2.11" % "2.2.1" % "test",
+  //
+  //play plugins
+  cache,
   ws,
+  "org.julienrf" %% "play-jsmessages" % "1.6.2",
+  //
   // frontend libs
   "org.webjars" %% "webjars-play" % "2.3.0",
   "org.webjars" % "bootstrap" % "3.0.0",

@@ -13,6 +13,21 @@ Code_search = Code search
 Go_search_button = Go!
 Go_search_button_loading = Loading ...
 
-Versions=Versions
-Some_configs=Some configs
+Repo_stats.without_sources = in {0} {1}
+Repo_stats.with_sources = in {0} {1} by {2}
+Repo_stats.by.users_and_orgs = {0} {1} & {2} {3}
+Repo_stats.by.users = {0} {1}
+Repo_stats.by.orgs = {0} {1}
+
+Repo_stats.Orgs.one = organization
+Repo_stats.Orgs.many = organizations
+
+Repo_stats.Users.one = user
+Repo_stats.Users.many = users
+
+Repo_stats.Repos.one = repository
+Repo_stats.Repos.many = repositories
+
+Versions = Versions
+Some_configs = Some configs
 Fetcher_stats = Fetcher stat

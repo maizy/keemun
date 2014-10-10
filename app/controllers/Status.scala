@@ -20,7 +20,12 @@ object Status extends Controller with WithViewContext {
       playAppInstance,
       PlayVersion.current,
       PlayVersion.scalaVersion,
-      fetcherStat
+      fetcherStat,
+      Some(List(
+        Option(System.getProperty("java.vm.vendor")),
+        Option(System.getProperty("java.vm.name")),
+        Option(System.getProperty("java.version"))
+      ).flatten.mkString(" ")).filterNot {_.length == 0}
     ))
   }
 }

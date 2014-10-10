@@ -1,5 +1,5 @@
-if (typeof window.keemun === 'undefined') { window.keemun = {}; }
-if (typeof window.keemun.LanguagePicker === 'undefined') {
+window.keemun = window.keemun || {};
+if (window.keemun.LanguagePicker == null) {
 window.keemun.LanguagePicker = (function() {
     'use strict';
 

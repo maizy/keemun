@@ -17,6 +17,7 @@ GET         /config                     controllers.Config.list
 POST        /language/set               controllers.Language.set
 
 GET         /js-routes                  controllers.JsHelpers.jsRoutes
+GET         /js-messages                controllers.JsHelpers.jsMessages
 
 GET         /favicon.ico                controllers.Assets.at(path="/public", file="images/favicon.ico")
 GET         /webjars/*file              controllers.WebJarAssets.at(file)

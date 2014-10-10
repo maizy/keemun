@@ -3,6 +3,7 @@ package keemun.views
 import play.api.mvc.{AnyContent, Request}
 import play.api.i18n
 import play.api.Play.current
+import play.api.libs.json.Json
 
 import keemun.Config.playAppInstance
 
@@ -18,6 +19,11 @@ class ViewContext(
   val projectRepoUrl = playAppInstance.projectRepoUrl
   val version = playAppInstance.version
   val copyrightYears = playAppInstance.copyrightYears
+  val jsState = Json.obj(
+    "lang" -> requestLang.code,
+    "country" -> requestLang.country,
+    "available_langs" -> availableLanguages.map(_.code)
+  )
 
   def Messages(key: String, args: Any*) = {
     i18n.Messages(key, args)(lang)

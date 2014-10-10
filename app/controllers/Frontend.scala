@@ -7,7 +7,7 @@ import keemun.controllers.WithViewContext
 object Frontend extends Controller with WithViewContext {
 
   def codeSearch = Action { implicit request =>
-    Ok(views.html.search())
+    Ok(views.html.codeSearch())
   }
 
   def redirectToCodeSearch = Action {

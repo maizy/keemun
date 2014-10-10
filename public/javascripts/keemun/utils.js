@@ -1,5 +1,5 @@
-if (typeof window.keemun === 'undefined') { window.keemun = {}; }
-if (typeof window.keemun.utils === 'undefined') {
+window.keemun = window.keemun || {};
+if (window.keemun.utils == null) {
 window.keemun.utils = (function() {
     'use strict';
 

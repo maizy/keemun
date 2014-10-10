@@ -1,0 +1,7 @@
+@()(implicit c: keemun.views.ViewContext)
+<script type="text/javascript">
+    window.keemun = window.keemun || {};
+    window.keemun.State = (function() {
+        return @Html(play.api.libs.json.Json.stringify(c.jsState));
+    })();
+</script>

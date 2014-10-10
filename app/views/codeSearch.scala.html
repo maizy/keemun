@@ -6,7 +6,7 @@
   <script type="text/javascript">
   //<![CDATA[
   $(function () {
-      new keemun.SearchForm(
+      keemun.SearchForm.main = new keemun.SearchForm(
           $('.keemun_search_form'),
           window.location.href.indexOf('debug=true') != -1
       );
@@ -25,6 +25,7 @@
                         <input id="text_search" type="text" required
                                class="form-control input-lg keemun_search_form--text-search"
                         />
+                        <p class="help-block keemun_search_form--stat hidden"></p>
                     </div>
                     <button type="submit"
                             class="btn btn-lg btn-primary"
