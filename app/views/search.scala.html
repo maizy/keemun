@@ -26,8 +26,11 @@
                                class="form-control input-lg keemun_search_form--text-search"
                         />
                     </div>
-                    <button type="submit" class="btn btn-lg btn-primary" disabled="disabled">
-                        @c.Messages("Go_search_button")
+                    <button type="submit"
+                            class="btn btn-lg btn-primary"
+                            disabled="disabled"
+                            data-ready-text="@c.Messages("Go_search_button")">
+                        @c.Messages("Go_search_button_loading")
                     </button>
                 </fieldset>
             </form>

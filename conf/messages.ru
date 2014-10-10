@@ -11,6 +11,7 @@ Status = Статус
 
 Code_search = Поиск по коду
 Go_search_button = Искать!
+Go_search_button_loading = Загружаю ...
 
 Versions=Версии
 Some_configs=Некоторые настройки

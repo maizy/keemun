@@ -30,6 +30,10 @@ window.keemun.SearchForm = (function() {
         return this.subSelect('element');
     };
 
+    s.prototype.getSubmitButton = function () {
+        return this.getForm().find(':submit');
+    };
+
     s.prototype.getRealForm = function () {
         return this.subSelect('real-form');
     };
@@ -49,7 +53,7 @@ window.keemun.SearchForm = (function() {
             keemun.utils.debug("Start in debug mode");
             this.getRealForm().show();
         }
-        this.getForm().find(':submit').prop('disabled', true);
+        this.getSubmitButton().prop('disable', true);
         this._loadReps();
         this._bindForm();
     };
@@ -60,12 +64,13 @@ window.keemun.SearchForm = (function() {
             url: r.url,
             method: r.method,
             success: function(data) {
-                var keys = [];
+                var keys = [],
+                    button = this.getSubmitButton();
                 _.forIn(data.repositories, function(rep) {
                     keys.push(rep.full_name);
                 });
                 this.setReps(keys);
-                this.getForm().find(':submit').prop('disabled', false);
+                button.text(button.data('ready-text')).prop('disabled', false);
             }.bind(this)
         });
     };

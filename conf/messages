@@ -11,6 +11,7 @@ Status = Status
 
 Code_search = Code search
 Go_search_button = Go!
+Go_search_button_loading = Loading ...
 
 Versions=Versions
 Some_configs=Some configs
