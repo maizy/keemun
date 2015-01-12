@@ -8,3 +8,5 @@ addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.3.4")
 resolvers += "jgit-repo" at "http://download.eclipse.org/jgit/maven"
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.6.4")
+
+addSbtPlugin("com.typesafe.sbt" % "sbt-coffeescript" % "1.0.0")
