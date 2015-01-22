@@ -6,7 +6,7 @@ name := "keemun"
 
 versionWithGit
 
-git.baseVersion := "0.0.1"
+git.baseVersion := "0.0.2"
 
 scalaVersion := "2.11.1"
 

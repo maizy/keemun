@@ -5,5 +5,5 @@ package keemun
  * See LICENSE.txt for details.
  */
 object Version {
-  val SYMBOLIC = "0.0.1"  //TODO: sync with build.sbt (generate on project builded)
+  val SYMBOLIC = "0.0.2"  //TODO: sync with build.sbt (generate on project builded)
 }
