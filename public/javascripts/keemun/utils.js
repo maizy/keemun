@@ -1,5 +1,5 @@
 window.keemun = window.keemun || {};
-if (window.keemun.utils == null) {
+if (!window.keemun.utils) {
 window.keemun.utils = (function() {
     'use strict';
 

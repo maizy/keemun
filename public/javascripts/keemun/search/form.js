@@ -1,5 +1,5 @@
 window.keemun = window.keemun || {};
-if (window.keemun.SearchForm == null) {
+if (!window.keemun.SearchForm) {
 window.keemun.SearchForm = (function() {
     'use strict';
 
@@ -7,7 +7,7 @@ window.keemun.SearchForm = (function() {
 
     var s = function SearchForm($wrapper, debug) {
         this._debug = _.isUndefined(debug) ? false : !!debug;
-        this.$_wrapper = $wrapper;
+        this._$wapper = $wrapper;
         this._reps = [];
         this._statistics = undefined;
         this._repsKey = undefined;
@@ -38,7 +38,7 @@ window.keemun.SearchForm = (function() {
     };
 
     s.prototype.getWrapper = function() {
-        return this.$_wrapper;
+        return this._$wrapper;
     };
 
     s.prototype.subSelect = function(name) {
@@ -69,7 +69,7 @@ window.keemun.SearchForm = (function() {
 
     s.prototype.init = function() {
         if (this._debug) {
-            keemun.utils.debug("Start in debug mode");
+            keemun.utils.debug('Start in debug mode');
             this.getRealForm().show();
         }
         this._bindForm();
@@ -86,6 +86,7 @@ window.keemun.SearchForm = (function() {
             url: r.url,
             method: r.method,
             success: function(data) {
+                /* jshint camelcase:false */
                 var keys = [];
                 _.forIn(data.repositories, function(rep) {
                     keys.push(rep.full_name);
@@ -135,34 +136,34 @@ window.keemun.SearchForm = (function() {
     s.prototype.showStatistics = function(repos, users, orgs, lang) {
         var _format = function() {
             var usersForm, orgsForm, by;
-            lang = lang || "en";
-            var reposForm = keemun.Messages.getNumeralByLangAndTranslationPrefix(repos, "Repo_stats.Repos", lang);
+            lang = lang || 'en';
+            var reposForm = keemun.Messages.getNumeralByLangAndTranslationPrefix(repos, 'Repo_stats.Repos', lang);
             if (users) {
-                usersForm = keemun.Messages.getNumeralByLangAndTranslationPrefix(users, "Repo_stats.Users", lang);
+                usersForm = keemun.Messages.getNumeralByLangAndTranslationPrefix(users, 'Repo_stats.Users', lang);
             }
             if (orgs) {
-                orgsForm = keemun.Messages.getNumeralByLangAndTranslationPrefix(orgs, "Repo_stats.Orgs", lang);
+                orgsForm = keemun.Messages.getNumeralByLangAndTranslationPrefix(orgs, 'Repo_stats.Orgs', lang);
             }
             if (users && orgs) {
-                by = keemun.Messages("Repo_stats.by.users_and_orgs", users, usersForm, orgs, orgsForm);
+                by = keemun.Messages('Repo_stats.by.users_and_orgs', users, usersForm, orgs, orgsForm);
             } else if (users) {
-                by = keemun.Messages("Repo_stats.by.users", users, usersForm);
+                by = keemun.Messages('Repo_stats.by.users', users, usersForm);
             } else if (orgs) {
-                by = keemun.Messages("Repo_stats.by.orgs", orgs, orgsForm);
+                by = keemun.Messages('Repo_stats.by.orgs', orgs, orgsForm);
             }
             if (by) {
-                return keemun.Messages("Repo_stats.with_sources", repos, reposForm, by);
+                return keemun.Messages('Repo_stats.with_sources', repos, reposForm, by);
             } else {
-                return keemun.Messages("Repo_stats.without_sources", repos, reposForm);
+                return keemun.Messages('Repo_stats.without_sources', repos, reposForm);
             }
         };
         var formatted = _format();
         if (this._debug) {
-            keemun.utils.debug("statistics");
+            keemun.utils.debug('statistics');
             keemun.utils.debug(this._statistics);
             keemun.utils.debug(formatted);
         }
-        this.subSelect("stat").text(formatted).removeClass("hidden");
+        this.subSelect('stat').text(formatted).removeClass('hidden');
     };
 
     return s;

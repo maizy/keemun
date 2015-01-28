@@ -1,12 +1,12 @@
 window.keemun = window.keemun || {};
-if (window.keemun.LanguagePicker == null) {
+if (!window.keemun.LanguagePicker) {
 window.keemun.LanguagePicker = (function() {
     'use strict';
 
     var COMPONENT = 'keemun_language-picker';
 
     var c = function LanguagePicker($wrapper) {
-        this.$_wrapper = $wrapper;
+        this._$wrapper = $wrapper;
 
         if (_.isUndefined($wrapper) || $wrapper.length === 0) {
             keemun.utils.error('Language picker component\'s wrapper not found');
@@ -16,7 +16,7 @@ window.keemun.LanguagePicker = (function() {
     };
 
     c.prototype.getWrapper = function () {
-        return this.$_wrapper;
+        return this._$wrapper;
     };
 
     c.prototype.subSelect = function(name) {
