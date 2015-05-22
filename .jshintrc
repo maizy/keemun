@@ -19,7 +19,7 @@
   "strict": true,
   "undef": true,
   "unused": true,
-  "globals": {
+  "predef": {
     "keemun": true,
     "jQuery": true,
     "$": true,

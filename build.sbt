@@ -38,4 +38,4 @@ debianPackageDependencies in Debian ++= Seq("oracle-java7-jre|openjdk-7-jre")
 
 packageDescription := scala.io.Source.fromFile(baseDirectory.value / "README.md").getLines().mkString
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
+lazy val root = (project in file(".")).enablePlugins(PlayScala, SbtWeb)
