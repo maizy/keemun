@@ -3,7 +3,7 @@ package controllers
 import play.api.mvc.{Action, Controller}
 import play.api.libs.json.{Json, JsNull}
 
-import keemun.controllers.{JsonBackend, fetchRepositories}
+import keemun.controllers.JsonBackend
 
 /**
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2013-2014
@@ -12,7 +12,9 @@ import keemun.controllers.{JsonBackend, fetchRepositories}
 object Repositories extends Controller with JsonBackend {
   def list = Action.async { implicit request =>
     import play.api.libs.concurrent.Execution.Implicits._
-    fetchRepositories() map {
+    val config = keemun.Config.playAppInstance
+    val client = config.githubClient
+    client.getReposForAccounts(config.sources.accountsSettings) map {
       repos =>
         Ok(Json.obj(
           "repositories" -> repos,

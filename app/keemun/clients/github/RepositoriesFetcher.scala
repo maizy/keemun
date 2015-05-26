@@ -58,7 +58,7 @@ class RepositoriesFetcher(client: Client) {
           fetching.finishPromises(accountSettings, p => p.success(res))
         }
 
-        client.getRepos(accountSettings) map {
+        client.getReposByAccount(accountSettings) map {
           case res =>
             Cache.set(key, res, CACHE_TIME)
             res
