@@ -163,7 +163,15 @@ if (!window.keemun.SearchForm) {
                 keemun.utils.debug(this._statistics);
                 keemun.utils.debug(formatted);
             }
-            this.subSelect('stat').text(formatted).removeClass('hidden');
+            this.subSelect('stat')
+                .text(formatted)
+                .hide()
+                .removeClass('hidden')
+                .slideDown()
+                .animate(
+                    {opacity: 1},
+                    {queue: false}
+                );
         };
 
         return s;
