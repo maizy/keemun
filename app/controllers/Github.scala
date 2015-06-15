@@ -2,8 +2,9 @@ package controllers
 
 import play.api.mvc.{Action, Controller}
 import play.api.libs.json.Json
-import keemun.clients.github.RepositoriesFetcher
 import keemun.controllers.JsonBackend
+
+import scala.concurrent.Future
 
 
 /**
@@ -13,7 +14,8 @@ import keemun.controllers.JsonBackend
 object Github extends Controller with JsonBackend {
 
   def reload = Action.async {
-    val fetcher = RepositoriesFetcher.playAppInstance
+    //FIXME todo
+    /*val fetcher = RepositoriesFetcher.playAppInstance
     val config = keemun.Config.playAppInstance
     import play.api.libs.concurrent.Execution.Implicits._
 
@@ -23,6 +25,12 @@ object Github extends Controller with JsonBackend {
           "success" -> success
         ))
     } recover commonJsonRecover
+    */
+    Future.successful(
+      Ok(Json.obj(
+          "success" -> true
+        ))
+    )
   }
 
 }

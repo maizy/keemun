@@ -1,6 +1,8 @@
 package keemun.clients.github
 
-import scala.concurrent.Future
+//import keemun.clients.github.resource.ResourceAsyncCache
+
+import scala.concurrent.{Future, ExecutionContext}
 
 import keemun.models.{AccountSettings, Repo}
 import keemun.clients.github.resources.Repositories
@@ -9,11 +11,13 @@ import keemun.clients.github.resources.Repositories
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014-2015
  * See LICENSE.txt for details.
  */
-class Client(val config: Config, implicit val context: scala.concurrent.ExecutionContext) {
+class Client(val config: Config, implicit val ec: ExecutionContext) {
+
+  lazy val repositoriesResource = new Repositories(config)
 
   def getReposByAccount(accountSettings: AccountSettings): Future[Seq[Repo]] =
-    Repositories.getAllByAccount(config, accountSettings)
-  
+    repositoriesResource.get(accountSettings)
+
   def getReposForAccounts(accountsSettings: Seq[AccountSettings]): Future[Seq[Repo]] =
     Future.sequence(accountsSettings map getReposByAccount).map(_.flatten)
 

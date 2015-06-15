@@ -12,6 +12,7 @@ import keemun.models.{AccountSettings, Repo}
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2014
  * See LICENSE.txt for details.
  */
+/*
 class RepositoriesFetcher(client: Client) {
   type Repos = Seq[Repo]
 
@@ -122,3 +123,4 @@ private class FetchingRepos() {
     }
   }
 }
+*/

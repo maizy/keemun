@@ -1,10 +1,13 @@
 package keemun.clients.github.resources
 
+import scala.concurrent.duration.{Duration, DurationInt}
 import scala.concurrent.{ExecutionContext, Future, Promise}
-import play.api.libs.ws.WS
+import scala.reflect.ClassTag
+
 import play.api.libs.json.{JsSuccess, JsError}
 import play.api.Logger
 
+import keemun.clients.github.resource.{ResourceAsyncCache, Resource}
 import keemun.models.{AccountSettings, Repo}
 import keemun.clients.github.{FetchError, Config, GithubReades, parseLinkHeader}
 
@@ -12,7 +15,8 @@ import keemun.clients.github.{FetchError, Config, GithubReades, parseLinkHeader}
  * Copyright (c) Nikita Kovaliov, maizy.ru, 2015
  * See LICENSE.txt for details.
  */
-object Repositories extends Resource {
+class RepositoriesBase(clientConfig: Config)(implicit protected override val context: ExecutionContext)
+    extends Resource[AccountSettings, Seq[Repo]](clientConfig) {
 
   val PER_PAGE = 100
 
@@ -20,43 +24,41 @@ object Repositories extends Resource {
     val currentPage: Option[Int] = nextPage map (_ - 1)
   }
 
-  def getAllByAccount(config: Config, accountSettings: AccountSettings)
-          (implicit context: ExecutionContext): Future[Seq[Repo]] = {
+  def get(params: AccountSettings): Future[Seq[Repo]] = params match {
+    case (accountSettings: AccountSettings) =>
+      val resultPromise = Promise[Seq[Repo]]()
 
-    val resultPromise = Promise[Seq[Repo]]()
+      val wrapError: PartialFunction[Throwable, Unit] = {
+        //TODO: custom error subclasses
+        case err => resultPromise.failure(new FetchError(cause = err))
+      }
+      val getFirstPage = getPage(accountSettings, 1, PER_PAGE)
 
-    val wrapError: PartialFunction[Throwable, Unit] = {
-      //TODO: custom error subclasses
-      case err => resultPromise.failure(new FetchError(cause = err))
-    }
-    val getFirstPage = getPage(config, accountSettings, page = 1, perPage = PER_PAGE)
+      getFirstPage onSuccess {
+        case PageRes(res, None, None) => resultPromise.success(res)
+        case PageRes(firstPageRes, _, Some(last)) =>
+          require(last > 1)
+          val otherPagesRes = Future.sequence(
+            for {
+              page <- 2 to last
+            } yield getPage(accountSettings, page, PER_PAGE)
+          )
+          otherPagesRes onSuccess {
+            case otherPages => resultPromise success (firstPageRes ++ otherPages.flatMap(_.repos))
+          }
+          otherPagesRes onFailure wrapError
+      }
+      getFirstPage onFailure wrapError
 
-    getFirstPage onSuccess {
-      case PageRes(res, None, None) => resultPromise.success(res)
-      case PageRes(firstPageRes, _, Some(last)) =>
-        require(last > 1)
-        val otherPagesRes = Future.sequence(
-          for {
-            page <- 2 to last
-          } yield getPage(config, accountSettings, page, perPage = PER_PAGE)
-        )
-        otherPagesRes onSuccess {
-          case otherPages => resultPromise success (firstPageRes ++ otherPages.flatMap(_.repos))
-        }
-        otherPagesRes onFailure wrapError
-    }
-    getFirstPage onFailure wrapError
-
-    resultPromise.future
+      resultPromise.future
   }
 
-  private def getPage(config: Config, accountSettings: AccountSettings, page: Int, perPage: Int)
-          (implicit context: ExecutionContext): Future[PageRes] = {
+  private def getPage(accountSettings: AccountSettings, page: Int, perPage: Int): Future[PageRes] = {
     Logger.debug(s"Fetch repo page: page=$page, perPage=$perPage, account=${accountSettings.account.name}")
     val account = accountSettings.account
-    val url = config.replaceBaseUrl(account.apiReposUrl)
+    val url = clientConfig.replaceBaseUrl(account.apiReposUrl)
     val httpClient = (
-        config.httpClient.url(url).withQueryString(
+        clientConfig.httpClient.url(url).withQueryString(
           "per_page" -> perPage.toString,
           "page" -> page.toString,
           "type" -> "open"
@@ -66,7 +68,8 @@ object Repositories extends Resource {
           case h => h
         }
       ) match {
-        case h if config.accessToken.isDefined => h.withHeaders("Authorization" -> s"token ${config.accessToken.get}")
+        case h if clientConfig.accessToken.isDefined =>
+          h.withHeaders("Authorization" -> s"token ${clientConfig.accessToken.get}")
         case h => h
       }
 
@@ -89,4 +92,19 @@ object Repositories extends Resource {
         }
     }
   }
+}
+
+
+class Repositories(clientConfig: Config)
+        (implicit protected override val context: ExecutionContext,
+         implicit protected override val classTag: ClassTag[Seq[Repo]])
+    extends RepositoriesBase(clientConfig)
+    with ResourceAsyncCache[AccountSettings, Seq[Repo]] {
+
+  override val ttl: Duration = 10.minutes
+
+  /**
+   * function to compute String key from input params
+   */
+  override def computeKey(params: AccountSettings): String = s"repos-${params.hashCode().toHexString}"
 }
