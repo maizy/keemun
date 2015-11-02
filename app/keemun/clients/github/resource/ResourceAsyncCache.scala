@@ -16,12 +16,9 @@ import play.api.cache.Cache
  *
  * TODO: for cache client use DI & CacheAPI instances (play 2.4+)
  */
-trait ResourceAsyncCache[I, O] extends Resource[I, O] {
+trait ResourceAsyncCache[I, O] extends Resource[I, O] with RequestKey[I, O] {
 
-  override type Input = I
-  override type Output = O
-
-  implicit protected val classTag: ClassTag[O]
+  implicit protected val classTag: ClassTag[Output]
   protected val ttl: Duration
 
   protected val logger: Option[Logger] = None
@@ -31,11 +28,6 @@ trait ResourceAsyncCache[I, O] extends Resource[I, O] {
 
   def misses(): Int = missesCount
   def hits(): Int = hitsCount
-
-  /**
-   * function to compute String key from input params
-   */
-  def computeKey(params: Input): String
 
   abstract override def get(params: Input): Future[Output] = {
     import play.api.Play.current  //TODO: di

@@ -7,7 +7,7 @@ import scala.reflect.ClassTag
 import play.api.libs.json.{JsSuccess, JsError}
 import play.api.Logger
 
-import keemun.clients.github.resource.{ResourceAsyncCache, Resource}
+import keemun.clients.github.resource.{RequestKey, ResourceAsyncCache, Resource}
 import keemun.models.{AccountSettings, Repo}
 import keemun.clients.github.{FetchError, Config, GithubReades, parseLinkHeader}
 
@@ -99,6 +99,7 @@ class Repositories(clientConfig: Config)
         (implicit protected override val context: ExecutionContext,
          implicit protected override val classTag: ClassTag[Seq[Repo]])
     extends RepositoriesBase(clientConfig)
+    with RequestKey[AccountSettings, Seq[Repo]]
     with ResourceAsyncCache[AccountSettings, Seq[Repo]] {
 
   override val ttl: Duration = 10.minutes
